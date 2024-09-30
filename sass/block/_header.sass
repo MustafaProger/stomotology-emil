@@ -1,0 +1,74 @@
+.header
+    position: relative
+    &__content_top
+        display: flex
+        justify-content: space-between
+        height: 60px
+        .header__media,
+        .header__contacts,
+        .email, 
+        .phone
+            display: flex
+            align-items: center
+            gap: 5px
+        .header__contacts
+            gap: 30px
+            a
+                color: #919191
+                transition: all 0.25s
+                &:hover
+                    color: black
+    
+    &__content_bottom
+        display: flex
+        justify-content: space-between
+        align-items: center
+        height: 80px
+        .nav
+            display: flex
+            align-items: center
+            max-width: 700px
+            width: 100%
+            justify-content: space-between
+            font-weight: 600
+            .list
+                display: flex
+                list-style: none
+                padding: 0
+                margin: 0
+                gap: 10px
+
+                &__hyperlink
+                    color: #555555b7
+                    transition: all 0.25s
+                    &:hover
+                        color: black
+        .btn
+             @include button         
+    &__icon
+        display: flex
+        align-items: center
+        .bashir-text
+            font-size: 27px
+            font-weight: 700
+            color: $main-color
+            text-transform: uppercase
+            margin: 0
+
+.header__content_top::before,
+.header__content_bottom::before
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    z-index: -1
+
+.header__content_top::before
+    height: 60px
+    background-color: #F5FBFF
+
+.header__content_bottom::before
+    top: 60px
+    height: 80px
+    background-color: #FFFFFF

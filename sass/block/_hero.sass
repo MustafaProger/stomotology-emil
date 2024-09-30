@@ -1,0 +1,26 @@
+.hero
+    background: url('../img/bg copy.png')
+    background-repeat: no-repeat
+    background-size: cover
+    object-fit: fill
+    &__content
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        width: 800px
+        height: 600px
+        margin: 0 auto
+        .title
+            margin: 0
+            color: white
+        .subtitle
+            color: white
+            text-align: center
+            line-height: 22px
+        .btn
+            @include button
+            background-color: transparent
+            &:hover
+                background-color: $main-color
+                color: white
