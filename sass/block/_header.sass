@@ -1,9 +1,11 @@
 .header
-    position: relative
+    padding: 0 30px
     &__content_top
         display: flex
         justify-content: space-between
         height: 60px
+        position: relative
+        z-index: 4
         .header__media,
         .header__contacts,
         .email, 
@@ -25,11 +27,13 @@
         align-items: center
         height: 80px
         .nav
+            z-index: 5
             display: flex
+            justify-content: space-between
             align-items: center
+            gap: 20px
             max-width: 700px
             width: 100%
-            justify-content: space-between
             font-weight: 600
             .list
                 display: flex
@@ -44,31 +48,29 @@
                     &:hover
                         color: black
         .btn
-             @include button         
+             @include button      
+    
     &__icon
+        position: relative
+        z-index: 4
         display: flex
         align-items: center
-        .bashir-text
-            font-size: 27px
-            font-weight: 700
-            color: $main-color
-            text-transform: uppercase
-            margin: 0
 
-.header__content_top::before,
-.header__content_bottom::before
+.header__content:nth-child(1)::before,
+.header__content:nth-child(2)::before
     content: ""
     position: absolute
     top: 0
     left: 0
     width: 100%
-    z-index: -1
+    z-index: 2
 
-.header__content_top::before
+.header__content:nth-child(1)::before
     height: 60px
     background-color: #F5FBFF
 
-.header__content_bottom::before
+.header__content:nth-child(2)::before
     top: 60px
     height: 80px
     background-color: #FFFFFF
+

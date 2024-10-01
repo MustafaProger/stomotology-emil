@@ -1,0 +1,103 @@
+@media (max-width: 920px)
+    .header__burger 
+        display: block
+        position: relative
+        width: 30px
+        height: 20px
+        z-index: 3
+        span 
+            position: absolute
+            background-color: #000
+            left: 0
+            height: 2px
+            width: 100%
+            top: 9px
+            transition: ease-in .3s
+        
+        &:before, &:after 
+            content: ""
+            background-color: #000
+            position: absolute
+            width: 100%
+            height: 2px
+            transition: ease-in .3s
+        
+        &:before 
+            top: 0
+        
+        &:after 
+            bottom: 0
+        
+        &.active:before 
+            transform: rotate(45deg)
+            top: 9px
+            transition: ease-in .3s
+        
+        &.active:after 
+            transform: rotate(-45deg)
+            bottom: 9px
+            transition: ease-in .3s
+        
+        &.active span 
+            transform: scale(0)
+            transition: ease-in .3s
+        
+
+    header 
+        .header__content_bottom 
+            .nav 
+                position: fixed
+                display: block
+                top: 0
+                left: 0
+                max-width: 100%
+                width: 100%
+                height: 100%
+                overflow: auto
+                transition: ease-in-out .5s
+                transform: translateY(-100%)
+                z-index: 1
+                background-color: rgba(255, 255, 255, .9)
+                &.active 
+                    transform: translateY(0%)
+                    .list__item
+                        opacity: 1
+                        animation: fade-down 1s ease-in-out forwards
+                    .list__item:nth-child(1)
+                        animation-delay: 0.02s
+                    .list__item:nth-child(2)
+                        animation-delay: 0.04s
+                    .list__item:nth-child(3)
+                        animation-delay: 0.06s
+                    .list__item:nth-child(4)
+                        animation-delay: 0.08s
+                    .list__item:nth-child(5)
+                        animation-delay: 0.1s
+                    .list__item:nth-child(6)
+                        animation-delay: 0.12s
+                .list 
+                    display: block
+                    margin: 170px 0 0 30px
+                    li 
+                        margin: 0 0 20px 0
+                        a
+                            width: 100%
+                            display: block
+                            color: black
+                            font-size: 25px
+                            font-weight: 500
+                            &:hover
+                                color: $main-color
+                                
+                .btn
+                    display: none
+        
+    .list__hyperlink 
+        font-size: 24px
+
+    body.lock
+        overflow: hidden
+
+    .content 
+        padding: 70px 0 0 0
+

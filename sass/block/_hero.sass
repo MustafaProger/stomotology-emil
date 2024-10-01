@@ -1,22 +1,24 @@
 .hero
-    background: url('../img/bg copy.png')
+    background: url('../img/main-bg.png')
     background-repeat: no-repeat
     background-size: cover
-    object-fit: fill
+    // background-attachment: fixed
+    // object-fit: fill
+    background-position: center
+    .container
+        margin: 0 auto
     &__content
         display: flex
         flex-direction: column
         justify-content: center
-        align-items: center
-        width: 800px
+        align-items: start
+        max-width: 480px
         height: 600px
-        margin: 0 auto
         .title
             margin: 0
             color: white
         .subtitle
             color: white
-            text-align: center
             line-height: 22px
         .btn
             @include button

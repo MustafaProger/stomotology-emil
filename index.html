@@ -5,7 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="icon/main-icon_with_border.svg" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href=icon/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icon/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icon/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icon/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icon/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icon/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icon/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icon/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="icon/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icon/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon/favicon-16x16.png">
+    <link rel="manifest" href="icon/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="icon/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- Изменение цвета вкладки -->
+    <meta name="theme-color" content="#00B5E2">
 
     <!-- normalize.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
@@ -21,8 +40,8 @@
 
 <body>
     <header class="header">
-        <div class="header__content section">
-            <div class="header__content_top">
+        <div class="header__content">
+            <div class="header__content_top section">
                 <div class="header__media">
                     <a href="" target="_blank" class="media__link github">
                         <img src="icon/media/instagram.svg" alt="">
@@ -30,7 +49,7 @@
                     <a href="https://t.me/+79936303084" target="_blank" class="media__link telegram">
                         <img src="icon/media/telegram.svg" alt="">
                     </a>
-                    <a href="https://wa.me/" target="_blank" class="media__link whatsapp">
+                    <a href="https://wa.me/+79880246554" target="_blank" class="media__link whatsapp">
                         <img src="icon/media/whatsapp.svg" alt="">
                     </a>
                 </div>
@@ -41,18 +60,19 @@
                     </div>
                     <div class="phone">
                         <img src="icon/contacts/phone.svg" alt="" class="phone__icon">
-                        <a href="tel:79680603084" class="font_size_13px">+7 968 060 30 84</a>
+                        <a href="tel:79880246554" class="font_size_13px">+7 988 024-65-54</a>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-            <div class="header__content section">
-                <div class="header__content_bottom">
+            <div class="header__content">
+                <div class="header__content_bottom section">
                     <a href="" class="header__icon">
-                        <img src="icon/main-icon_without_border.svg" alt="">
-                        <p class="bashir-text">Bashir</p>
+                        <img src="/icon/main-icon.svg" alt="">
                     </a>
+                    <div class="header__burger">
+                        <span></span>
+                    </div>
                     <nav class="nav">
                         <ul class="list">
                             <li class="list__item font_size_16px"><a href="" class="list__hyperlink">Главная</a></li>
@@ -69,15 +89,17 @@
     </header>
 
     <main class="hero">
-        <div class="container">
-            <div class="hero__content">
-                <h1 class="title font_size_42px">Ваша улыбка — моя забота</h1>
-                <p class="subtitle font_size_16px">Профессиональные стоматологические услуги от эксперта с опытом, включая лечение, восстановление зубов и эстетическую стоматологию.</p>
+        <div class="container section">
+            <div class="hero__content ">
+                <h1 class="title font_size_52px">Ваша улыбка — моя забота</h1>
+                <p class="subtitle font_size_16px">Профессиональные стоматологические услуги от эксперта с опытом, включая имплантацию и протезирование на имплантатах для восстановления здоровой и красивой улыбки.</p>
                 <a class="btn font_size_16px">Бесплатная консультация</a>
             </div>
         </div>
     </main>
 
+
+    <script src="js/script.js"></script>
 </body>
 
 </html>
