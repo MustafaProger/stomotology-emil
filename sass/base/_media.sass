@@ -1,8 +1,6 @@
 @media (max-width: 768px)
-
-    .header,
     .container
-        padding: 0 20px
+        padding: 20px !important
 
     .hero
         background-attachment: scroll
@@ -11,11 +9,23 @@
 
         .hero__content
             height: 480px
-        
 
+    .about
+        .font_size_42px
+            font-size: 35px
+
+@media (max-width: 600px) 
+    .about
+        .button-container 
+            display: none
 
 @media (max-width: 480px)
     .header
         .header__contacts
             .email
                 display: none
+
+    .about
+        .about__blocks 
+            .about__block 
+                width: 90%
