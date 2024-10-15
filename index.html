@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <header class="header" id="main">
+    <header class="header">
         <div class="header__content">
             <div class="header__content_top">
                 <div class="header__media">
@@ -75,9 +75,9 @@
                     </div>
                     <nav class="nav">
                         <ul class="list">
-                            <li class="list__item font_size_16px"><a href="#main" class="list__hyperlink">Главная</a></li>
+                            <li class="list__item font_size_16px"><a href="#hero" class="list__hyperlink">Главная</a></li>
                             <li class="list__item font_size_16px"><a href="#about" class="list__hyperlink">Обо мне</a></li>
-                            <li class="list__item font_size_16px"><a href="" class="list__hyperlink">Услуги</a></li>
+                            <li class="list__item font_size_16px"><a href="#services" class="list__hyperlink">Услуги</a></li>
                             <li class="list__item font_size_16px"><a href="" class="list__hyperlink">Работы</a></li>
                             <li class="list__item font_size_16px"><a href="" class="list__hyperlink">Отзывы</a></li>
                             <li class="list__item font_size_16px"><a href="" class="list__hyperlink">Контакты</a></li>
@@ -88,7 +88,7 @@
             </div>
     </header>
 
-    <main class="hero">
+    <main class="hero" id="hero">
         <div class="container">
             <div class="hero__content ">
                 <h1 class="title font_size_52px">Ваша улыбка — моя забота</h1>
@@ -158,6 +158,58 @@
         </div>
       </section>
 
+      <section class="services" id="services">
+        <div class="container">
+          <h2 class="title font_size_42px">Наши услуги</h2>
+          <div class="services-container">
+            <div class="service-card">
+              <div class="service-card-inner">
+                <div class="service-card-front">
+                  <div class="icon">🦷</div>
+                  <h3>Лечение зубов</h3>
+                  <p>Качественное лечение кариеса, пломбировка и удаление зубов.</p>
+                  <button class="flip-btn">Подробнее</button>
+                </div>
+                <div class="service-card-back">
+                  <h3>Лечение зубов</h3>
+                  <p>Мы предлагаем самые современные методы лечения зубов, включая пломбирование, лечение кариеса и удаление зубов с минимальной болью. Наши специалисты используют качественные материалы и передовые технологии для долгосрочных результатов.</p>
+                  <button class="flip-back-btn">Назад</button>
+                </div>
+              </div>
+            </div>
+            <div class="service-card">
+              <div class="service-card-inner">
+                <div class="service-card-front">
+                  <div class="icon">✨</div>
+                  <h3>Отбеливание зубов</h3>
+                  <p>Современные методы отбеливания зубов для ослепительной улыбки.</p>
+                  <button class="flip-btn">Подробнее</button>
+                </div>
+                <div class="service-card-back">
+                  <h3>Отбеливание зубов</h3>
+                  <p>Мы используем новейшие технологии отбеливания зубов, которые делают вашу улыбку более яркой и привлекательной. Процедуры абсолютно безопасны, не повреждают зубную эмаль и гарантируют стойкий эффект, сохраняя белизну на длительное время.</p>
+                  <button class="flip-back-btn">Назад</button>
+                </div>
+              </div>
+            </div>
+            <div class="service-card">
+              <div class="service-card-inner">
+                <div class="service-card-front">
+                  <div class="icon">🪥</div>
+                  <h3>Чистка зубов</h3>
+                  <p>Профессиональная чистка зубов и уход за полостью рта.</p>
+                  <button class="flip-btn">Подробнее</button>
+                </div>
+                <div class="service-card-back">
+                  <h3>Чистка зубов</h3>
+                  <p>Регулярная чистка зубов помогает избежать проблем с зубами и деснами, поддерживая их здоровье. Мы предлагаем глубокую профессиональную чистку, удаление налета, зубного камня и профилактику заболеваний.</p>
+                  <button class="flip-back-btn">Назад</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
     <script src="js/bundle.js"></script>
 </body>
 

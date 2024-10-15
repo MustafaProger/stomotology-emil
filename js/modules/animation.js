@@ -11,7 +11,7 @@ function animation() {
             if (block) {
                 const targetPosition = block.getBoundingClientRect().top + window.pageYOffset; // Позиция блока
                 const startPosition = window.pageYOffset; // Текущая позиция прокрутки
-                const distance = targetPosition - startPosition; // Расстояние до блока
+                const distance = targetPosition - startPosition - 140; // Расстояние до блока
                 const duration = 1000; // Продолжительность анимации в миллисекундах
                 let startTime = null;
 

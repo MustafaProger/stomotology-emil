@@ -2,6 +2,15 @@
     .container
         padding: 20px !important
 
+    .header
+        .header__content_top,
+        .header__content_bottom
+            padding: 0 20px
+        .header__content_bottom 
+            .nav
+                .list
+                    margin: 170px 0 0 20px
+
     .hero
         background-attachment: scroll
         .font_size_52px
@@ -11,6 +20,10 @@
             height: 480px
 
     .about
+        .font_size_42px
+            font-size: 35px
+
+    .services
         .font_size_42px
             font-size: 35px
 
@@ -29,3 +42,9 @@
         .about__blocks 
             .about__block 
                 width: 90%
+
+@media (max-width: 375px) 
+    .about 
+        .about__blocks 
+            .about__block 
+                width: 75%

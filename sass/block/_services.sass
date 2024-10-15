@@ -1,0 +1,101 @@
+.services
+    background-color: #f8f9fa
+    height: 100%
+    text-align: center
+
+    .container 
+        max-width: 100%
+        padding: 50px 30px
+
+    .services-container 
+        display: flex
+        justify-content: center
+        flex-wrap: wrap
+        margin-top: 20px
+        gap: 20px
+
+    .service-card 
+        width: 400px
+        height: 350px
+
+    .service-card-inner 
+        position: relative
+        transform-style: preserve-3d
+        transition: transform 0.8s
+
+    .flipped 
+        transform: rotateY(180deg)
+
+    .service-card-front,
+    .service-card-back 
+        position: absolute
+        width: 100%
+        height: 350px  
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        gap: 10px
+        backface-visibility: hidden
+        border-radius: 8px
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+
+    .service-card-front 
+        background-color: #fff
+        text-align: center
+
+    .service-card-back 
+        color: white
+        background-color: $main-color
+        transform: rotateY(180deg)
+
+    .service-card .icon 
+        font-size: 40px
+        color: $main-color
+
+    .service-card-front h3,
+    .service-card-front p,
+    .service-card-back h3,
+    .service-card-back p
+        margin: 0
+
+    .service-card-front h3,
+    .service-card-front p
+        color: #000
+
+    .service-card-front h3,
+    .service-card-back h3
+        font-size: 25px
+
+    .service-card-front p,
+    .service-card-back p
+        padding: 10px 15px
+
+    .service-card-back h3,
+    .service-card-back p
+        color: #f8f9fa
+
+
+    .service-card .flip-btn,
+    .service-card .flip-back-btn 
+        padding: 10px 20px
+        cursor: pointer
+        transition: all 0.3s
+
+    .service-card .flip-btn 
+        color: white
+        background-color: $main-color
+        border: 1px solid $main-color
+
+    .service-card .flip-back-btn 
+        color: $main-color
+        background-color: #f8f9fa
+        border: 1px solid #f8f9fa
+
+    .service-card .flip-btn:hover 
+        background-color: white
+        color: $main-color
+
+    .service-card .flip-back-btn:hover 
+        background-color: $main-color
+        color: #f8f9fa

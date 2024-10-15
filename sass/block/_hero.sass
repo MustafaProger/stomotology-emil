@@ -2,12 +2,10 @@
     background: url('../img/main-bg.png')
     background-repeat: no-repeat
     background-size: cover
-    // background-attachment: fixed
-    // object-fit: fill
-    background-position: center
+    background-position: 50% 100%
     padding-top: 140px
     .container
-        margin: 0 auto
+        padding: 0 30px
     &__content
         display: flex
         flex-direction: column
@@ -17,13 +15,14 @@
         height: 600px
         .title
             margin: 0
-            color: white
+            color: black
         .subtitle
-            color: white
+            color: black
             line-height: 22px
         .btn
             @include button
             background-color: transparent
+            color: black
             &:hover
                 background-color: $main-color
                 color: white

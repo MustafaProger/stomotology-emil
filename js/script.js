@@ -1,6 +1,7 @@
 import burger from "./modules/burger";
 import slider from "./modules/slider";
 import animation from "./modules/animation";
+import cardFlip from "./modules/card-flip";
 
 document.addEventListener('DOMContentLoaded', () => {
     animation();
@@ -12,4 +13,5 @@ document.addEventListener('DOMContentLoaded', () => {
         dotsContainerelector: '.dots-container',
         dotselector: '.dot',
     });
+    cardFlip();
 })

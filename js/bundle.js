@@ -25,7 +25,7 @@ function animation() {
       if (block) {
         const targetPosition = block.getBoundingClientRect().top + window.pageYOffset; // Позиция блока
         const startPosition = window.pageYOffset; // Текущая позиция прокрутки
-        const distance = targetPosition - startPosition; // Расстояние до блока
+        const distance = targetPosition - startPosition - 140; // Расстояние до блока
         const duration = 1000; // Продолжительность анимации в миллисекундах
         let startTime = null;
 
@@ -74,6 +74,31 @@ function burger() {
     document.body.classList.toggle('lock');
     lists.forEach(item => {
       item.classList.toggle('fade-down');
+    });
+  });
+}
+
+/***/ }),
+
+/***/ "./js/modules/card-flip.js":
+/*!*********************************!*\
+  !*** ./js/modules/card-flip.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ cardFlip)
+/* harmony export */ });
+function cardFlip() {
+  document.querySelectorAll('.flip-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      this.closest('.service-card-inner').classList.add('flipped');
+    });
+  });
+  document.querySelectorAll('.flip-back-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      this.closest('.service-card-inner').classList.remove('flipped');
     });
   });
 }
@@ -276,6 +301,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_burger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/burger */ "./js/modules/burger.js");
 /* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/slider */ "./js/modules/slider.js");
 /* harmony import */ var _modules_animation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/animation */ "./js/modules/animation.js");
+/* harmony import */ var _modules_card_flip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/card-flip */ "./js/modules/card-flip.js");
+
 
 
 
@@ -289,6 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dotsContainerelector: '.dots-container',
     dotselector: '.dot'
   });
+  (0,_modules_card_flip__WEBPACK_IMPORTED_MODULE_3__["default"])();
 });
 })();
 
