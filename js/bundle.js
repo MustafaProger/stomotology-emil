@@ -233,6 +233,50 @@ function slider({
   updateSliderPosition();
 }
 
+/***/ }),
+
+/***/ "./js/modules/works.js":
+/*!*****************************!*\
+  !*** ./js/modules/works.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ works)
+/* harmony export */ });
+function works() {
+  document.querySelectorAll('.before-after-container').forEach(container => {
+    const beforeImage = container.getAttribute('data-before');
+    const afterImage = container.getAttribute('data-after');
+
+    // Назначаем фоны для before и after
+    const beforeElement = container.querySelector('.before_after');
+    const afterElement = container.querySelector('figure');
+
+    // Присваиваем background-image
+    beforeElement.style.backgroundImage = `url(${beforeImage})`;
+    afterElement.style.backgroundImage = `url(${afterImage})`;
+  });
+
+  // Добавляем обработчики для слайдеров
+  document.querySelectorAll('.before_after_slider').forEach(slider => {
+    slider.addEventListener('input', () => {
+      beforeAfter(slider); // Вызываем локальную функцию для обработки
+    });
+  });
+
+  // Локальная функция для обработки слайдера
+  function beforeAfter(slider) {
+    const container = slider.closest('.before-after-container');
+    const beforeElement = container.querySelector('.before_after');
+
+    // Получаем значение слайдера и изменяем ширину элемента before
+    const value = slider.value;
+    beforeElement.style.width = `${value}%`;
+  }
+}
+
 /***/ })
 
 /******/ 	});
@@ -302,6 +346,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/slider */ "./js/modules/slider.js");
 /* harmony import */ var _modules_animation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/animation */ "./js/modules/animation.js");
 /* harmony import */ var _modules_card_flip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/card-flip */ "./js/modules/card-flip.js");
+/* harmony import */ var _modules_works__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/works */ "./js/modules/works.js");
+
 
 
 
@@ -317,6 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dotselector: '.dot'
   });
   (0,_modules_card_flip__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  (0,_modules_works__WEBPACK_IMPORTED_MODULE_4__["default"])();
 });
 })();
 
