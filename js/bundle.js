@@ -105,6 +105,56 @@ function cardFlip() {
 
 /***/ }),
 
+/***/ "./js/modules/percent.js":
+/*!*******************************!*\
+  !*** ./js/modules/percent.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ percent)
+/* harmony export */ });
+function percent(percent, progressBar) {
+  let percentElements = document.querySelectorAll(percent);
+  let progressBarElements = document.querySelectorAll(progressBar);
+  let animated = Array(percentElements.length).fill(false); // Флаги анимации для каждого прогресс-бара
+
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+  }
+  function updateProgressBar(i) {
+    let percentJS = 0;
+    let targetPercent = parseInt(percentElements[i].innerText.replace('%', ''), 10);
+    function animate() {
+      if (percentJS < targetPercent) {
+        percentJS++;
+        progressBarElements[i].style.width = percentJS + '%';
+        percentElements[i].innerText = percentJS + '%';
+        setTimeout(animate, 10);
+      }
+    }
+    animate();
+  }
+  function checkAndAnimateProgressBars() {
+    percentElements.forEach((item, i) => {
+      if (isInViewport(item) && !animated[i]) {
+        updateProgressBar(i);
+        animated[i] = true; // Помечаем прогресс-бар как анимированный
+      }
+    });
+  }
+
+  // Проверяем и анимируем прогресс-бары при первой загрузке страницы
+  checkAndAnimateProgressBars();
+
+  // Проверяем и анимируем прогресс-бары при прокрутке
+  window.addEventListener('scroll', checkAndAnimateProgressBars);
+}
+
+/***/ }),
+
 /***/ "./js/modules/slider.js":
 /*!******************************!*\
   !*** ./js/modules/slider.js ***!
@@ -366,6 +416,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_animation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/animation */ "./js/modules/animation.js");
 /* harmony import */ var _modules_card_flip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/card-flip */ "./js/modules/card-flip.js");
 /* harmony import */ var _modules_works__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/works */ "./js/modules/works.js");
+/* harmony import */ var _modules_percent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/percent */ "./js/modules/percent.js");
+
 
 
 
@@ -383,6 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   (0,_modules_card_flip__WEBPACK_IMPORTED_MODULE_3__["default"])();
   (0,_modules_works__WEBPACK_IMPORTED_MODULE_4__["default"])();
+  (0,_modules_percent__WEBPACK_IMPORTED_MODULE_5__["default"])(".percent", ".progressBar");
 });
 })();
 

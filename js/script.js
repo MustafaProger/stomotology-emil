@@ -3,6 +3,7 @@ import slider from "./modules/slider";
 import animation from "./modules/animation";
 import cardFlip from "./modules/card-flip";
 import works from "./modules/works";
+import percent from "./modules/percent";
 
 document.addEventListener('DOMContentLoaded', () => {
     animation();
@@ -16,4 +17,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     cardFlip();
     works();
+    percent(".percent", ".progressBar")
 })

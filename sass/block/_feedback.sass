@@ -9,3 +9,27 @@
             border-radius: 100%
     &__message
         line-height: 30px
+
+    &__percent
+        width: 500px
+        &-text
+            display: flex
+            justify-content: space-between
+            .percent 
+                text-align: right
+
+        .progressBarContainer 
+            width: 100%
+            background-color: #eae9e9
+            border-radius: 8px
+            overflow: hidden
+
+        .progressBar 
+            height: 14px
+            background-color: #00B5E2
+            width: 0%
+            text-align: center
+            line-height: 30px
+            color: white
+            border-radius: 8px
+            transition: width 0.1s linear
