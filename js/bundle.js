@@ -155,17 +155,17 @@ function percent(percent, progressBar) {
 
 /***/ }),
 
-/***/ "./js/modules/slider.js":
-/*!******************************!*\
-  !*** ./js/modules/slider.js ***!
-  \******************************/
+/***/ "./js/modules/slider-about.js":
+/*!************************************!*\
+  !*** ./js/modules/slider-about.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ slider)
+/* harmony export */   "default": () => (/* binding */ sliderAbout)
 /* harmony export */ });
-function slider({
+function sliderAbout({
   trackSelector,
   slideselector,
   buttonselector,
@@ -197,6 +197,10 @@ function slider({
       moveActiveDot(currentIndex); // перемещаем активную точку
     });
   });
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+  }
 
   // Функция для обновления позиции слайдера
   function updateSliderPosition() {
@@ -247,6 +251,8 @@ function slider({
 
   // Обработчик нажатия клавиш
   document.addEventListener('keydown', event => {
+    if (!isInViewport(track)) return; // Проверка видимости слайдера
+
     if (event.key === 'ArrowLeft') {
       gotoPrev(); // Переход к предыдущему слайду
     } else if (event.key === 'ArrowRight') {
@@ -266,6 +272,8 @@ function slider({
     const currentX = event.touches[0].clientX; // Текущая позиция касания
     const diff = startX - currentX; // Разница между начальной и текущей позицией
 
+    // event.preventDefault();
+
     // Если движение больше 50 пикселей, переключаем слайды
     if (diff > 50) {
       gotoNext(); // Переключаем на следующий слайд
@@ -281,6 +289,88 @@ function slider({
 
   // Инициализируем слайдер
   updateSliderPosition();
+}
+
+/***/ }),
+
+/***/ "./js/modules/slider-feedback.js":
+/*!***************************************!*\
+  !*** ./js/modules/slider-feedback.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ sliderFeedback)
+/* harmony export */ });
+function sliderFeedback() {
+  const wrapper = document.querySelector('.feedback__blocks-wrapper'),
+    inner = document.querySelector('.feedback__blocks-inner'),
+    blocks = document.querySelectorAll('.feedback__block'),
+    // dots = document.querySelectorAll('.dots'),
+    width = window.getComputedStyle(wrapper).width;
+  let offset = 0;
+  let slideIndex = 1;
+  inner.style.width = 100 * blocks.length + '%';
+  function moveToSlide(index) {
+    offset = +width.slice(0, width.length - 2) * (index - 1);
+    inner.style.transform = `translateX(-${offset}px)`;
+    activeDot();
+  }
+  document.addEventListener('keydown', event => {
+    if (!isInViewport(wrapper)) return; // Проверка видимости слайдера
+
+    if (event.key === 'ArrowLeft') {
+      if (offset == 0) {
+        offset = +width.slice(0, width.length - 2) * (blocks.length - 1);
+        slideIndex = blocks.length;
+      } else {
+        offset -= +width.slice(0, width.length - 2);
+        slideIndex--;
+      }
+      moveToSlide(slideIndex);
+    } else if (event.key === 'ArrowRight') {
+      if (offset == +width.slice(0, width.length - 2) * (blocks.length - 1)) {
+        offset = 0;
+        slideIndex = 1;
+      } else {
+        offset += +width.slice(0, width.length - 2);
+        slideIndex++;
+      }
+      moveToSlide(slideIndex);
+    }
+  });
+  const indicators = document.createElement('ol'),
+    dots = [];
+  indicators.classList.add('carousel-indicators');
+  wrapper.append(indicators);
+  for (let i = 0; i < blocks.length; i++) {
+    const dot = document.createElement('li');
+    dot.setAttribute('data-slide-to', i + 1);
+    dot.classList.add('feedback__dot');
+    if (i == 0) {
+      dot.style.opacity = '1';
+    }
+    indicators.append(dot);
+    dots.push(dot);
+  }
+  function activeDot() {
+    dots.forEach(dot => {
+      dot.style.backgroundColor = '#fff';
+    });
+    dots[slideIndex - 1].style.backgroundColor = '#00B5E2';
+  }
+  dots.forEach(dot => {
+    dot.addEventListener('click', e => {
+      const slideTo = e.target.getAttribute('data-slide-to');
+      slideIndex = slideTo;
+      moveToSlide(slideIndex);
+    });
+  });
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+  }
 }
 
 /***/ }),
@@ -412,11 +502,13 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_burger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/burger */ "./js/modules/burger.js");
-/* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/slider */ "./js/modules/slider.js");
+/* harmony import */ var _modules_slider_about__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/slider-about */ "./js/modules/slider-about.js");
 /* harmony import */ var _modules_animation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/animation */ "./js/modules/animation.js");
 /* harmony import */ var _modules_card_flip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/card-flip */ "./js/modules/card-flip.js");
 /* harmony import */ var _modules_works__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/works */ "./js/modules/works.js");
 /* harmony import */ var _modules_percent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/percent */ "./js/modules/percent.js");
+/* harmony import */ var _modules_slider_feedback__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/slider-feedback */ "./js/modules/slider-feedback.js");
+
 
 
 
@@ -426,7 +518,7 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener('DOMContentLoaded', () => {
   (0,_modules_animation__WEBPACK_IMPORTED_MODULE_2__["default"])();
   (0,_modules_burger__WEBPACK_IMPORTED_MODULE_0__["default"])();
-  (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__["default"])({
+  (0,_modules_slider_about__WEBPACK_IMPORTED_MODULE_1__["default"])({
     trackSelector: '.about__blocks',
     slideselector: '.about__block',
     buttonselector: '.button',
@@ -436,6 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
   (0,_modules_card_flip__WEBPACK_IMPORTED_MODULE_3__["default"])();
   (0,_modules_works__WEBPACK_IMPORTED_MODULE_4__["default"])();
   (0,_modules_percent__WEBPACK_IMPORTED_MODULE_5__["default"])(".percent", ".progressBar");
+  (0,_modules_slider_feedback__WEBPACK_IMPORTED_MODULE_6__["default"])();
 });
 })();
 

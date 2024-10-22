@@ -1,4 +1,4 @@
-export default function slider({trackSelector, slideselector, buttonselector, dotsContainerelector, dotselector}) {
+export default function sliderAbout({trackSelector, slideselector, buttonselector, dotsContainerelector, dotselector}) {
     const track = document.querySelector(trackSelector);
     const slides = document.querySelectorAll(slideselector);
     const buttons = document.querySelectorAll(buttonselector);
@@ -24,6 +24,16 @@ export default function slider({trackSelector, slideselector, buttonselector, do
             moveActiveDot(currentIndex); // перемещаем активную точку
         });
     });
+
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
 
     // Функция для обновления позиции слайдера
     function updateSliderPosition() {
@@ -74,6 +84,8 @@ export default function slider({trackSelector, slideselector, buttonselector, do
 
     // Обработчик нажатия клавиш
     document.addEventListener('keydown', (event) => {
+        if (!isInViewport(track)) return; // Проверка видимости слайдера
+
         if (event.key === 'ArrowLeft') {
             gotoPrev(); // Переход к предыдущему слайду
         } else if (event.key === 'ArrowRight') {
@@ -94,6 +106,8 @@ export default function slider({trackSelector, slideselector, buttonselector, do
         const currentX = event.touches[0].clientX; // Текущая позиция касания
         const diff = startX - currentX; // Разница между начальной и текущей позицией
 
+        // event.preventDefault();
+        
         // Если движение больше 50 пикселей, переключаем слайды
         if (diff > 50) {
             gotoNext(); // Переключаем на следующий слайд

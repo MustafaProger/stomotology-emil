@@ -1,14 +1,15 @@
 import burger from "./modules/burger";
-import slider from "./modules/slider";
+import sliderAbout from "./modules/slider-about";
 import animation from "./modules/animation";
 import cardFlip from "./modules/card-flip";
 import works from "./modules/works";
 import percent from "./modules/percent";
+import sliderFeedback from "./modules/slider-feedback";
 
 document.addEventListener('DOMContentLoaded', () => {
     animation();
     burger();
-    slider({
+    sliderAbout({
         trackSelector: '.about__blocks',
         slideselector: '.about__block',
         buttonselector: '.button',
@@ -17,5 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     cardFlip();
     works();
-    percent(".percent", ".progressBar")
+    percent(".percent", ".progressBar");
+    sliderFeedback();
 })

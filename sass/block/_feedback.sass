@@ -1,12 +1,32 @@
 .feedback
     background-color: $color-light
-    &__content
+
+    ol
+        padding: 0
+        
+    li
+        list-style: none
+
+    &__blocks-wrapper
+        overflow: hidden
+
+    &__blocks-inner
+        position: relative
         display: flex
+        max-width: 1200px
+        margin-bottom: 75px
+        transition: all 0.5s
+
+    &__block
+        display: flex
+        min-width: 1200px
+
     &__img
         img
             width: 300px
             height: 300px
             border-radius: 100%
+
     &__message
         line-height: 30px
 
@@ -33,3 +53,16 @@
             color: white
             border-radius: 8px
             transition: width 0.1s linear
+
+    .carousel-indicators
+        display: flex
+        justify-content: center
+        gap: 20px
+
+    .feedback__dot
+        position: relative
+        display: block
+        width: 10px
+        height: 10px
+        border: 1px solid $main-color
+        border-radius: 100%
