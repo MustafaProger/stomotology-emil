@@ -1,4 +1,4 @@
-function animation() {
+export default function animationScroll() {
     const buttons = document.querySelectorAll('a[href^="#"]'); // Получаем все ссылки, ведущие на якорные блоки
 
     buttons.forEach(btn => {
@@ -37,5 +37,3 @@ function animation() {
         });
     });
 }
-
-export default animation;

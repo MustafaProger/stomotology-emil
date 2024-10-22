@@ -1,13 +1,13 @@
 import burger from "./modules/burger";
 import sliderAbout from "./modules/slider-about";
-import animation from "./modules/animation";
+import animationScroll from "./modules/animationScroll";
 import cardFlip from "./modules/card-flip";
 import works from "./modules/works";
-import percent from "./modules/percent";
+import animateProgressBar from "./modules/animateProgressBar";
 import sliderFeedback from "./modules/slider-feedback";
 
 document.addEventListener('DOMContentLoaded', () => {
-    animation();
+    animationScroll();
     burger();
     sliderAbout({
         trackSelector: '.about__blocks',
@@ -18,6 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     cardFlip();
     works();
-    percent(".percent", ".progressBar");
+    animateProgressBar(".percent", ".progressBar");
     sliderFeedback();
 })

@@ -20,7 +20,7 @@ export default function percent(percent, progressBar) {
                 percentJS++;
                 progressBarElements[i].style.width = percentJS + '%';
                 percentElements[i].innerText = percentJS + '%';
-                setTimeout(animate, 10)
+                requestAnimationFrame(animate, 10)
             }
         }
         animate();

@@ -9,24 +9,26 @@ export default function sliderFeedback() {
 
     inner.style.width = 100 * blocks.length + '%';
 
-    // Анимация прогресс-бара с задержкой
+    // Анимация прогресс-бара 
     function animateProgressBar(block) {
         const percentElement = block.querySelector('.percent');
         const progressBarElement = block.querySelector('.progressBar');
         let percentJS = 0;
         const targetPercent = parseInt(percentElement.innerText.replace('%', ''), 10);
-
+    
         function animate() {
             if (percentJS < targetPercent) {
                 percentJS++;
                 progressBarElement.style.width = percentJS + '%';
                 percentElement.innerText = percentJS + '%';
-                setTimeout(animate, 10);
+                requestAnimationFrame(animate, 10); // Анимация обновляется каждые 10 миллисекунд
             }
         }
-
+    
         animate();
+
     }
+    animateProgressBar(blocks[0]);
 
     // Проверка, виден ли слайд в области видимости
     function isInViewport(element) {
@@ -109,4 +111,29 @@ export default function sliderFeedback() {
     });
 
     activeDot();
+
+    // function adjustWidth() {
+    //     const screenWidth = window.innerWidth;
+    
+    //     // Получаем все блоки
+    //     const blocks = document.querySelectorAll('.feedback__block'); // Замените на ваш селектор
+    
+    //     if (screenWidth <= 1260) {
+    //         // Устанавливаем минимальную ширину с вычетом 60 пикселей
+    //         blocks.forEach(element => {
+    //             element.style.width = `${screenWidth - 60}px`;
+    //         });
+    //     } else {
+    //         // Опционально: сброс ширины или установка другой логики для меньших экранов
+    //         blocks.forEach(element => {
+    //             element.style.width = 'auto'; // Или устанавливаем нужное значение
+    //         });
+    //     }
+    // }
+    
+    // // Вызываем функцию при загрузке страницы
+    // window.addEventListener('load', adjustWidth);
+    
+    // // Вызываем функцию при изменении размера окна
+    // window.addEventListener('resize', adjustWidth);
 }
