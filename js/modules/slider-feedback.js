@@ -2,21 +2,55 @@ export default function sliderFeedback() {
     const wrapper = document.querySelector('.feedback__blocks-wrapper'),
         inner = document.querySelector('.feedback__blocks-inner'),
         blocks = document.querySelectorAll('.feedback__block'),
-        // dots = document.querySelectorAll('.dots'),
         width = window.getComputedStyle(wrapper).width;
 
     let offset = 0;
     let slideIndex = 1;
 
-
     inner.style.width = 100 * blocks.length + '%';
 
-    function moveToSlide(index) {
-        offset = +width.slice(0, width.length - 2) * (index - 1);
-        inner.style.transform = `translateX(-${offset}px)`
-        activeDot();
+    // Анимация прогресс-бара с задержкой
+    function animateProgressBar(block) {
+        const percentElement = block.querySelector('.percent');
+        const progressBarElement = block.querySelector('.progressBar');
+        let percentJS = 0;
+        const targetPercent = parseInt(percentElement.innerText.replace('%', ''), 10);
+
+        function animate() {
+            if (percentJS < targetPercent) {
+                percentJS++;
+                progressBarElement.style.width = percentJS + '%';
+                percentElement.innerText = percentJS + '%';
+                setTimeout(animate, 10);
+            }
+        }
+
+        animate();
     }
 
+    // Проверка, виден ли слайд в области видимости
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+        );
+    }
+
+    // Переключение на нужный слайд
+    function moveToSlide(index) {
+        offset = +width.slice(0, width.length - 2) * (index - 1);
+        inner.style.transform = `translateX(-${offset}px)`;
+        activeDot();
+
+        // Запуск анимации прогресс-бара для активного слайда
+        const activeSlide = blocks[index - 1];
+        if (isInViewport(wrapper)) {
+            animateProgressBar(activeSlide);
+        }
+    }
+
+    // Листание слайдов с клавиатуры
     document.addEventListener('keydown', (event) => {
         if (!isInViewport(wrapper)) return; // Проверка видимости слайдера
 
@@ -25,8 +59,8 @@ export default function sliderFeedback() {
                 offset = +width.slice(0, width.length - 2) * (blocks.length - 1);
                 slideIndex = blocks.length;
             } else {
-                offset -= +width.slice(0, width.length - 2)
-                slideIndex--
+                offset -= +width.slice(0, width.length - 2);
+                slideIndex--;
             }
             moveToSlide(slideIndex);
 
@@ -35,15 +69,14 @@ export default function sliderFeedback() {
                 offset = 0;
                 slideIndex = 1;
             } else {
-                offset += +width.slice(0, width.length - 2)
-                slideIndex++
+                offset += +width.slice(0, width.length - 2);
+                slideIndex++;
             }
-
             moveToSlide(slideIndex);
         }
     });
 
-
+    // Индикаторы
     const indicators = document.createElement('ol'),
         dots = [];
     indicators.classList.add('carousel-indicators');
@@ -62,7 +95,7 @@ export default function sliderFeedback() {
 
     function activeDot() {
         dots.forEach(dot => {
-            dot.style.backgroundColor = '#fff'
+            dot.style.backgroundColor = '#fff';
         });
         dots[slideIndex - 1].style.backgroundColor = '#00B5E2';
     }
@@ -75,14 +108,5 @@ export default function sliderFeedback() {
         });
     });
 
-
-    function isInViewport(element) {
-        const rect = element.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
+    activeDot();
 }
