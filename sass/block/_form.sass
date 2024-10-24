@@ -1,0 +1,71 @@
+.form
+    &-open 
+        display: block
+
+    .inputs-field
+        display: grid
+        grid-template-rows: repeat(2, 1fr)
+        grid-template-columns: repeat(2, 1fr)
+        gap: 20px
+        margin-bottom: 30px
+
+    .input-field 
+        position: relative
+        margin-top: 45px
+        color: black
+        & label 
+            position: absolute
+            top: 0
+            left: 0
+            color: black
+            font-size: 16px
+            pointer-events: none
+            transition: 0.25s ease
+            color: black
+
+    .input-field:nth-child(5) 
+        grid-column: 1 / -1
+
+    &__input 
+        position: relative
+        width: 100%
+        height: 35px
+        padding: 0px 0px
+        color: #000
+        background: transparent
+        border: none
+        border-bottom: 1px solid #000
+        outline: none
+        transition: 0.25s ease
+        &:focus
+            border-bottom: 1px solid $main-color
+            
+    .btn 
+        @include button
+        max-width: 300px
+        width: 100%
+
+
+    .form__input:focus
+        border-bottom: 1px solid $main-color
+
+    .input-field input:focus~label,
+    .input-field select:focus~label,
+    .input-field textarea:focus~label 
+        font-size: 0.8rem
+        top: 10px
+        transform: translateY(-150%)
+        color: $main-color
+
+    .input-field textarea:focus~label 
+        top: 16.6666666667px
+        transform: translateY(-250%)
+
+    .input-field .label-datetime
+        font-size: 0.8rem
+        top: 10px
+        transform: translateY(-150%)
+
+    textarea
+        overflow-y: auto
+        // resize: none

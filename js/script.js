@@ -5,6 +5,7 @@ import cardFlip from "./modules/card-flip";
 import works from "./modules/works";
 import animateProgressBar from "./modules/animateProgressBar";
 import sliderFeedback from "./modules/slider-feedback";
+import form from "./modules/form";
 
 document.addEventListener('DOMContentLoaded', () => {
     animationScroll();
@@ -20,4 +21,5 @@ document.addEventListener('DOMContentLoaded', () => {
     works();
     animateProgressBar(".percent", ".progressBar");
     sliderFeedback();
+    form();
 })

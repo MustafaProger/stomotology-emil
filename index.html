@@ -79,7 +79,7 @@
             <li class="list__item font_size_16px"><a href="#about" class="list__hyperlink">Обо мне</a></li>
             <li class="list__item font_size_16px"><a href="#services" class="list__hyperlink">Услуги</a></li>
             <li class="list__item font_size_16px"><a href="#works" class="list__hyperlink">Работы</a></li>
-            <li class="list__item font_size_16px"><a href="" class="list__hyperlink">Отзывы</a></li>
+            <li class="list__item font_size_16px"><a href="#feedback" class="list__hyperlink">Отзывы</a></li>
             <li class="list__item font_size_16px"><a href="" class="list__hyperlink">Связаться</a></li>
           </ul>
           <a class="btn font_size_16px">Записаться на прием</a>
@@ -494,7 +494,11 @@
             </figure>
             <div class="feedback__text">
               <h3 class="feedback_name">Андрей Соколов</h3>
-              <p class="feedback__message">Я давно искал надежного стоматолога и наконец нашел его в этой клинике. Доктор Тихонов с первых минут показал свой профессионализм и доброжелательное отношение. Все процедуры были выполнены аккуратно и под постоянным контролем. Лечение длилось несколько недель, но все прошло на высшем уровне. Теперь я могу с уверенностью сказать, что нашел свою стоматологическую клинику и рекомендую ее всем!
+              <p class="feedback__message">Я давно искал надежного стоматолога и наконец нашел его в этой клинике.
+                Доктор Тихонов с первых минут показал свой профессионализм и доброжелательное отношение. Все процедуры
+                были выполнены аккуратно и под постоянным контролем. Лечение длилось несколько недель, но все прошло на
+                высшем уровне. Теперь я могу с уверенностью сказать, что нашел свою стоматологическую клинику и
+                рекомендую ее всем!
               </p>
               <div class="feedback__percent">
                 <div class="feedback__percent-text">
@@ -509,6 +513,54 @@
           </div>
         </div>
       </div>
+  </section>
+
+  <section class="form">
+    <div class="form__dialog">
+      <div class="container">
+        <h1 class="title form__title font_size_42px">Запись на прием</h1>
+        <div class="form__content">
+          <form action="#">
+            <div class="inputs-field">
+              <!-- Поле для имени -->
+              <div class="input-field">
+                <input name="name" type="text" class="form__input input-name" required>
+                <label class="label label-name">Имя</label>
+              </div>
+
+              <!-- Поле для телефона -->
+              <div class="input-field">
+                <input name="phone" data-tel-input maxlength="18" type="tel" class="form__input input-phone" required>
+                <label class="label label-phone">Номер телефона</label>
+              </div>
+
+              <!-- Поле для даты и времени приема -->
+              <div class="input-field">
+                <input name="appointment_date" type="datetime-local" class="form__input input-datetime" required>
+                <label class="label label-datetime">Дата и время приёма</label>
+              </div>
+
+              <!-- Поле для выбора услуги -->
+              <div class="input-field">
+                <select name="service" class="form__input input-service" required>
+                  <option value="" disabled selected>Выберите услугу</option>
+                  <option value="cleaning">Чистка зубов</option>
+                  <option value="cavity_treatment">Лечение кариеса</option>
+                  <option value="whitening">Отбеливание</option>
+                </select>
+              </div>
+
+              <!-- Поле для комментариев -->
+              <div class="input-field">
+                <textarea name="comments" class="form__input input-comments"></textarea>
+                <label class="label label-comments">Комментарии</label>
+              </div>
+            </div>
+            <button class="btn form__btn">Записаться</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </section>
   <script src="js/bundle.js"></script>
 </body>

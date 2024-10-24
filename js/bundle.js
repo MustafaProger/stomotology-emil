@@ -154,6 +154,42 @@ function cardFlip() {
 
 /***/ }),
 
+/***/ "./js/modules/form.js":
+/*!****************************!*\
+  !*** ./js/modules/form.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ form)
+/* harmony export */ });
+function form() {
+  function handleFloatingLabel(labelsForInputSelector, labelsForTextareaSelector, inputSelector, textareaSelector) {
+    const labelsForInput = document.querySelectorAll(labelsForInputSelector);
+    const labelsForTextarea = document.querySelectorAll(labelsForTextareaSelector);
+    const inputs = document.querySelectorAll(inputSelector);
+    const textareas = document.querySelectorAll(textareaSelector);
+    function moveLabel(isActive, index, labelName, topValue, translateValue) {
+      const label = labelName[index]; // Связываем конкретный инпут с его лейблом
+      if (isActive) {
+        label.style.cssText = `font-size: 0.8rem; top: ${topValue}px; transform: translateY(-${translateValue}%);`;
+      } else {
+        label.style.cssText = ''; // Возвращаем лейбл в исходное положение, если инпут пустой
+      }
+    }
+    inputs.forEach((input, index) => {
+      input.addEventListener('input', () => moveLabel(input.value.trim() !== '', index, labelsForInput, 10, 150));
+    });
+    textareas.forEach((textarea, index) => {
+      textarea.addEventListener('input', () => moveLabel(textarea.value.trim() !== '', index, labelsForTextarea, 16.6666666667, 250));
+    });
+  }
+  handleFloatingLabel('.label', '.label-comments', '.form input', 'textarea');
+}
+
+/***/ }),
+
 /***/ "./js/modules/slider-about.js":
 /*!************************************!*\
   !*** ./js/modules/slider-about.js ***!
@@ -564,6 +600,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_works__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/works */ "./js/modules/works.js");
 /* harmony import */ var _modules_animateProgressBar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/animateProgressBar */ "./js/modules/animateProgressBar.js");
 /* harmony import */ var _modules_slider_feedback__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/slider-feedback */ "./js/modules/slider-feedback.js");
+/* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/form */ "./js/modules/form.js");
+
 
 
 
@@ -585,6 +623,7 @@ document.addEventListener('DOMContentLoaded', () => {
   (0,_modules_works__WEBPACK_IMPORTED_MODULE_4__["default"])();
   (0,_modules_animateProgressBar__WEBPACK_IMPORTED_MODULE_5__["default"])(".percent", ".progressBar");
   (0,_modules_slider_feedback__WEBPACK_IMPORTED_MODULE_6__["default"])();
+  (0,_modules_form__WEBPACK_IMPORTED_MODULE_7__["default"])();
 });
 })();
 
