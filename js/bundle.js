@@ -442,7 +442,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ validation)
 /* harmony export */ });
 function validation() {
-  function handleFloatingLabel(labelsForInputSelector, labelsForTextareaSelector, inputSelector, textareaSelector) {
+  function handleFloatingLabel(labelsForInputSelector, labelsForTextareaSelector, inputSelector, textareaSelector, checkboxSelector) {
     const labelsForInput = document.querySelectorAll(labelsForInputSelector);
     const labelsForTextarea = document.querySelectorAll(labelsForTextareaSelector);
     const inputs = document.querySelectorAll(inputSelector);
@@ -462,10 +462,11 @@ function validation() {
       textarea.addEventListener('input', () => moveLabel(textarea.value.trim() !== '', index, labelsForTextarea, 16.6666666667, 250));
     });
   }
-  function validation(form, inputName, inputPhone, inputService) {
+  function validation(form, inputName, inputPhone, inputService, inputCheckbox) {
     const nameInput = form.querySelector(inputName);
     const phoneInput = form.querySelector(inputPhone);
     const serviceInput = form.querySelector(inputService);
+    const checkboxInput = document.querySelectorAll(inputCheckbox);
     let isValid = true;
     let message = {
       name: {
@@ -520,6 +521,19 @@ function validation() {
       }
       if (!fieldIsValid) isValid = false;
     }
+    function validationCheckbox(inputs) {
+      inputs.forEach((input, index) => {
+        input.addEventListener('change', () => {
+          if (checkbox.checked) {
+            checkbox.classList.remove('error');
+            checkbox.classList.add('success');
+          } else {
+            checkbox.classList.remove('success');
+            checkbox.classList.add('error');
+          }
+        });
+      });
+    }
     function createError(input, name) {
       let error = form.querySelector(`.${name}__error`);
       if (!error) {
@@ -535,9 +549,10 @@ function validation() {
   const form = document.querySelector('#form form');
   form.addEventListener('submit', event => {
     event.preventDefault(); // Предотвращаем отправку формы для валидации
+
     validation(form, '.input-name', '.input-phone', '.input-service');
   });
-  handleFloatingLabel('.label', '.label-comments', '.form input', 'textarea');
+  handleFloatingLabel('.label', '.label-comments', '.form . inputs-field input', 'textarea');
 }
 
 /***/ }),

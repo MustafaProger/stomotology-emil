@@ -76,3 +76,52 @@
     .error
         padding-top: 15px
         color: $color-error
+        
+    &__policy
+            display: flex
+            align-items: center
+            gap: 0
+            height: 22px
+            padding: 0 0 30px 3px
+            input
+                position: relative   
+                cursor: pointer
+                padding: 0
+                margin: 0
+                margin-right: 15px
+                &:focus
+                    border: none
+                    box-shadow: none
+                &::before
+                    content: ""
+                    position: absolute
+                    left: -3px
+                    top: -3px
+                    width: 18px
+                    height: 18px
+                    z-index: 10
+                    background-color: #fff
+                    border: 1.5px solid grey
+                &::after
+                    display: none
+                    content: ""
+                    position: absolute
+                    left: 0
+                    top: 0
+                    width: 12px
+                    height: 12px
+                    border: 1.5px solid $main-color
+                    z-index: 12
+                    background-color: $main-color
+                &.check
+                    &::after
+                        display: block
+
+                &.error::before
+                    background-color: $color-error 
+
+                &.success::before
+                    background-color: $main-color
+            a
+                color: black
+                text-decoration: underline

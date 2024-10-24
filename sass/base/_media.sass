@@ -29,6 +29,32 @@
         .two-column-grid
             grid-template-columns: 1fr
 
+    .privacy
+        .container
+            padding: 0 !important
+        &__wrapper
+            padding: 10px
+            background: #fff        
+        &__content
+            padding: 15px
+            border: 2px solid #EEEEEE
+            color: #212529
+        &__item
+            padding-bottom: 22px
+            .descr
+                margin-bottom: 15px
+        .ol
+            padding-left: 0
+        .title
+            &_fz24
+                font-size: 18px
+            &_fz20
+                font-size: 16px
+                line-height: 23px
+            &_fz14
+                font-size: 14px
+
+
 @media (max-width: 600px) 
     .about
         .button-container 
@@ -60,3 +86,9 @@
         .about__blocks 
             .about__block 
                 width: 75%
+    body
+        .privacy
+            .li_1
+                display: none
+            .li_2
+                display: block

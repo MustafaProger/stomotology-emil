@@ -1,5 +1,5 @@
 export default function validation() {
-    function handleFloatingLabel(labelsForInputSelector, labelsForTextareaSelector, inputSelector, textareaSelector) {
+    function handleFloatingLabel(labelsForInputSelector, labelsForTextareaSelector, inputSelector, textareaSelector, checkboxSelector) {
         const labelsForInput = document.querySelectorAll(labelsForInputSelector);
         const labelsForTextarea = document.querySelectorAll(labelsForTextareaSelector);
         const inputs = document.querySelectorAll(inputSelector);
@@ -24,13 +24,14 @@ export default function validation() {
 
     }
 
-    function validation(form, inputName, inputPhone, inputService) {
+    function validation(form, inputName, inputPhone, inputService, inputCheckbox) {
         const nameInput = form.querySelector(inputName);
         const phoneInput = form.querySelector(inputPhone);
         const serviceInput = form.querySelector(inputService);
-    
+        const checkboxInput = document.querySelectorAll(inputCheckbox);
+
         let isValid = true;
-    
+
         let message = {
             name: {
                 required: 'Введите имя пользователя',
@@ -46,31 +47,35 @@ export default function validation() {
                 required: 'Выберите услугу'
             }
         };
-    
-        let { name, phone, service } = message;
-    
+
+        let {
+            name,
+            phone,
+            service
+        } = message;
+
         errorWork(nameInput, 'name', 2, /\d/, name);
         errorWork(phoneInput, 'phone', 11, /\D/, phone);
         errorWork(serviceInput, 'service', 1, null, service);
-    
+
         return isValid;
-    
+
         function errorWork(input, classError, length, regex, message) {
             createError(input, classError);
             const error = form.querySelector(`.${classError}__error`);
-    
+
             const validateField = () => {
                 validationNamePhone(input, error, length, regex, message);
             };
-    
+
             input.removeEventListener('input', validateField);
             input.addEventListener('input', validateField);
             validateField();
         }
-    
+
         function validationNamePhone(input, error, length, regex, message) {
             let fieldIsValid = true;
-    
+
             if (input.value.trim() === '') {
                 error.innerHTML = message.required;
                 error.style.display = 'block';
@@ -86,10 +91,24 @@ export default function validation() {
             } else {
                 error.style.display = 'none';
             }
-    
+
             if (!fieldIsValid) isValid = false;
         }
-    
+
+        function validationCheckbox(inputs) {
+            inputs.forEach((input, index) => {
+                input.addEventListener('change', () => {
+                    if (checkbox.checked) {
+                        checkbox.classList.remove('error');
+                        checkbox.classList.add('success');
+                    } else {
+                        checkbox.classList.remove('success');
+                        checkbox.classList.add('error');
+                    }
+                })
+            })
+        }
+
         function createError(input, name) {
             let error = form.querySelector(`.${name}__error`);
             if (!error) {
@@ -100,13 +119,14 @@ export default function validation() {
             }
         }
     }
-    
+
     // Пример вызова функции
     const form = document.querySelector('#form form');
     form.addEventListener('submit', (event) => {
         event.preventDefault(); // Предотвращаем отправку формы для валидации
+
         validation(form, '.input-name', '.input-phone', '.input-service');
     });
-    
-    handleFloatingLabel('.label', '.label-comments', '.form input', 'textarea');
+
+    handleFloatingLabel('.label', '.label-comments', '.form . inputs-field input', 'textarea');
 }

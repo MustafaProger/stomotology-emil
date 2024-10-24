@@ -217,6 +217,7 @@
       </div>
     </div>
   </section>
+  
   <section class="works" id="works">
     <div class="container">
       <h1 class="title font_size_42px">Наши работы</h1>
@@ -524,25 +525,25 @@
             <div class="inputs-field">
               <!-- Поле для имени -->
               <div class="input-field">
-                <input name="name" type="text" class="form__input input-name" >
+                <input name="name" type="text" class="form__input input-name">
                 <label class="label label-name">Имя</label>
               </div>
 
               <!-- Поле для телефона -->
               <div class="input-field">
-                <input name="phone" data-tel-input maxlength="18" type="tel" class="form__input input-phone" >
+                <input name="phone" data-tel-input maxlength="18" type="tel" class="form__input input-phone">
                 <label class="label label-phone">Номер телефона</label>
               </div>
 
               <!-- Поле для даты и времени приема -->
               <div class="input-field">
-                <input name="appointment_date" type="datetime-local" class="form__input input-datetime" >
+                <input name="appointment_date" type="datetime-local" class="form__input input-datetime">
                 <label class="label label-datetime">Дата и время приёма</label>
               </div>
 
               <!-- Поле для выбора услуги -->
               <div class="input-field">
-                <select name="service" class="form__input input-service" >
+                <select name="service" class="form__input input-service">
                   <option value="" disabled selected>Выберите услугу</option>
                   <option value="cleaning">Чистка зубов</option>
                   <option value="cavity_treatment">Лечение кариеса</option>
@@ -556,6 +557,15 @@
                 <label class="label label-comments">Комментарии</label>
               </div>
             </div>
+
+            <!-- Поле для checkbox -->
+            <div class="form__policy">
+              <input type="checkbox" name="checkbox" id="checkbox" required="">
+              <label for="checkbox" id="label__checkbox">
+                Я согласен(а) с <a href="privacy.html" target="_blank">политикой конфиденциальности</a>
+              </label>
+            </div>
+
             <button class="btn form__btn">Записаться</button>
           </form>
         </div>
