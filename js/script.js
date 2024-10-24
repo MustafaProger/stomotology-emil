@@ -5,7 +5,8 @@ import cardFlip from "./modules/card-flip";
 import works from "./modules/works";
 import animateProgressBar from "./modules/animateProgressBar";
 import sliderFeedback from "./modules/slider-feedback";
-import validation from "./modules/validation";
+import { handleFloatingLabel, validationCheckbox } from "./modules/validation";
+import forms from "./modules/forms";
 
 document.addEventListener('DOMContentLoaded', () => {
     animationScroll();
@@ -21,5 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     works();
     animateProgressBar(".percent", ".progressBar");
     sliderFeedback();
-    validation();
+    validationCheckbox('input[type="checkbox"]')
+    handleFloatingLabel('.label', '.label-comments', '.form .inputs-field input', 'textarea');
+    forms();
 })

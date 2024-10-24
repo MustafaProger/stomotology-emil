@@ -217,7 +217,7 @@
       </div>
     </div>
   </section>
-  
+
   <section class="works" id="works">
     <div class="container">
       <h1 class="title font_size_42px">Наши работы</h1>
@@ -560,7 +560,7 @@
 
             <!-- Поле для checkbox -->
             <div class="form__policy">
-              <input type="checkbox" name="checkbox" id="checkbox" required="">
+              <input type="checkbox" name="checkbox" id="checkbox">
               <label for="checkbox" id="label__checkbox">
                 Я согласен(а) с <a href="privacy.html" target="_blank">политикой конфиденциальности</a>
               </label>
@@ -572,7 +572,26 @@
       </div>
     </div>
   </section>
+
   <script src="js/bundle.js"></script>
+  <script>
+    // function validationCheckbox(checkboxsSelector) {
+    //   const checkboxs = document.querySelectorAll(checkboxsSelector)
+    //   checkboxs.forEach((checkbox) => {
+    //     checkbox.addEventListener('change', () => {
+    //       if (checkbox.checked) {
+    //         checkbox.classList.remove('error');
+    //         checkbox.classList.add('success');
+    //       } else {
+    //         checkbox.classList.remove('success');
+    //         checkbox.classList.add('error');
+    //       }
+    //     });
+    //   });
+    // }
+
+    // validationCheckbox('input[type="checkbox"]');
+  </script>
 </body>
 
 </html>
