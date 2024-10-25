@@ -1,7 +1,22 @@
 .form
-    &-open 
+    position: relative
+    form::after 
+        content: ""
+        position: fixed
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        z-index: 1001
+        background: rgba(0, 0, 0, 0.4)
+        display: none
+
+    form.sending::after
         display: block
 
+    &-open 
+        display: block
+    
     .inputs-field
         display: grid
         grid-template-rows: repeat(2, 1fr)
@@ -35,6 +50,7 @@
         background: transparent
         border: none
         border-bottom: 1px solid #000
+        border-radius: 0px
         outline: none
         transition: 0.25s ease
         &:focus
@@ -44,7 +60,6 @@
         @include button
         max-width: 300px
         width: 100%
-
 
     .form__input:focus
         border-bottom: 1px solid $main-color

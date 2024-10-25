@@ -151,10 +151,6 @@ function validationCheckbox(checkboxsSelector) {
     });
 }
 
-// validationCheckbox('input[type="checkbox"]')
-
-// handleFloatingLabel('.label', '.label-comments', '.form .inputs-field input', 'textarea');
-
 export {
     handleFloatingLabel,
     validate,
