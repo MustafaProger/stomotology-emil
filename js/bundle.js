@@ -2,56 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./js/modules/animateProgressBar.js":
-/*!******************************************!*\
-  !*** ./js/modules/animateProgressBar.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ percent)
-/* harmony export */ });
-function percent(percent, progressBar) {
-  let percentElements = document.querySelectorAll(percent);
-  let progressBarElements = document.querySelectorAll(progressBar);
-  let animated = Array(percentElements.length).fill(false); // Флаги анимации для каждого прогресс-бара
-
-  function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
-  }
-  function updateProgressBar(i) {
-    let percentJS = 0;
-    let targetPercent = parseInt(percentElements[i].innerText.replace('%', ''), 10);
-    function animate() {
-      if (percentJS < targetPercent) {
-        percentJS++;
-        progressBarElements[i].style.width = percentJS + '%';
-        percentElements[i].innerText = percentJS + '%';
-        requestAnimationFrame(animate, 10);
-      }
-    }
-    animate();
-  }
-  function checkAndAnimateProgressBars() {
-    percentElements.forEach((item, i) => {
-      if (isInViewport(item) && !animated[i]) {
-        updateProgressBar(i);
-        animated[i] = true; // Помечаем прогресс-бар как анимированный
-      }
-    });
-  }
-
-  // Проверяем и анимируем прогресс-бары при первой загрузке страницы
-  checkAndAnimateProgressBars();
-
-  // Проверяем и анимируем прогресс-бары при прокрутке
-  window.addEventListener('scroll', checkAndAnimateProgressBars);
-}
-
-/***/ }),
-
 /***/ "./js/modules/animationScroll.js":
 /*!***************************************!*\
   !*** ./js/modules/animationScroll.js ***!
@@ -354,24 +304,6 @@ function sliderFeedback() {
   let slideIndex = 1;
   inner.style.width = 100 * blocks.length + '%';
 
-  // Анимация прогресс-бара 
-  function animateProgressBar(block) {
-    const percentElement = block.querySelector('.percent');
-    const progressBarElement = block.querySelector('.progressBar');
-    let percentJS = 0;
-    const targetPercent = parseInt(percentElement.innerText.replace('%', ''), 10);
-    function animate() {
-      if (percentJS < targetPercent) {
-        percentJS++;
-        progressBarElement.style.width = percentJS + '%';
-        percentElement.innerText = percentJS + '%';
-        requestAnimationFrame(animate, 10); // Анимация обновляется каждые 10 миллисекунд
-      }
-    }
-    animate();
-  }
-  animateProgressBar(blocks[0]);
-
   // Проверка, виден ли слайд в области видимости
   function isInViewport(element) {
     const rect = element.getBoundingClientRect();
@@ -383,12 +315,6 @@ function sliderFeedback() {
     offset = +width.slice(0, width.length - 2) * (index - 1);
     inner.style.transform = `translateX(-${offset}px)`;
     activeDot();
-
-    // Запуск анимации прогресс-бара для активного слайда
-    const activeSlide = blocks[index - 1];
-    if (isInViewport(wrapper)) {
-      animateProgressBar(activeSlide);
-    }
   }
 
   // Листание слайдов с клавиатуры
@@ -445,31 +371,6 @@ function sliderFeedback() {
     });
   });
   activeDot();
-
-  // function adjustWidth() {
-  //     const screenWidth = window.innerWidth;
-
-  //     // Получаем все блоки
-  //     const blocks = document.querySelectorAll('.feedback__block'); // Замените на ваш селектор
-
-  //     if (screenWidth <= 1260) {
-  //         // Устанавливаем минимальную ширину с вычетом 60 пикселей
-  //         blocks.forEach(element => {
-  //             element.style.width = `${screenWidth - 60}px`;
-  //         });
-  //     } else {
-  //         // Опционально: сброс ширины или установка другой логики для меньших экранов
-  //         blocks.forEach(element => {
-  //             element.style.width = 'auto'; // Или устанавливаем нужное значение
-  //         });
-  //     }
-  // }
-
-  // // Вызываем функцию при загрузке страницы
-  // window.addEventListener('load', adjustWidth);
-
-  // // Вызываем функцию при изменении размера окна
-  // window.addEventListener('resize', adjustWidth);
 }
 
 /***/ }),
@@ -751,11 +652,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_animationScroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/animationScroll */ "./js/modules/animationScroll.js");
 /* harmony import */ var _modules_card_flip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/card-flip */ "./js/modules/card-flip.js");
 /* harmony import */ var _modules_works__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/works */ "./js/modules/works.js");
-/* harmony import */ var _modules_animateProgressBar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/animateProgressBar */ "./js/modules/animateProgressBar.js");
-/* harmony import */ var _modules_slider_feedback__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/slider-feedback */ "./js/modules/slider-feedback.js");
-/* harmony import */ var _modules_validation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/validation */ "./js/modules/validation.js");
-/* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/forms */ "./js/modules/forms.js");
-
+/* harmony import */ var _modules_slider_feedback__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/slider-feedback */ "./js/modules/slider-feedback.js");
+/* harmony import */ var _modules_validation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/validation */ "./js/modules/validation.js");
+/* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/forms */ "./js/modules/forms.js");
 
 
 
@@ -776,11 +675,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   (0,_modules_card_flip__WEBPACK_IMPORTED_MODULE_3__["default"])();
   (0,_modules_works__WEBPACK_IMPORTED_MODULE_4__["default"])();
-  (0,_modules_animateProgressBar__WEBPACK_IMPORTED_MODULE_5__["default"])(".percent", ".progressBar");
-  (0,_modules_slider_feedback__WEBPACK_IMPORTED_MODULE_6__["default"])();
-  (0,_modules_validation__WEBPACK_IMPORTED_MODULE_7__.validationCheckbox)('input[type="checkbox"]');
-  (0,_modules_validation__WEBPACK_IMPORTED_MODULE_7__.handleFloatingLabel)('.label', '.label-comments', '.form .inputs-field input', 'textarea');
-  (0,_modules_forms__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  (0,_modules_slider_feedback__WEBPACK_IMPORTED_MODULE_5__["default"])();
+  (0,_modules_validation__WEBPACK_IMPORTED_MODULE_6__.validationCheckbox)('input[type="checkbox"]');
+  (0,_modules_validation__WEBPACK_IMPORTED_MODULE_6__.handleFloatingLabel)('.label', '.label-comments', '.form .inputs-field input', 'textarea');
+  (0,_modules_forms__WEBPACK_IMPORTED_MODULE_7__["default"])();
 });
 })();
 
