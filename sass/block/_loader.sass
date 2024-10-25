@@ -3,10 +3,8 @@
     top: 50%
     left: 50%
     transform: translate(-50%, -50%)
-    z-index: 1001
+    z-index: 53
     display: none
-    &.active
-        display: block
 
 .custom-loader 
     width: 50px
@@ -19,9 +17,10 @@
     animation: animate 1s infinite
     transition: all 0.5s
 
+body.sending
+    .loader-wrapper 
+        display: block
 
 @keyframes animate 
     to 
         transform: rotate(180deg)
-
-

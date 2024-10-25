@@ -175,20 +175,17 @@ function forms() {
       let isValid = (0,_validation__WEBPACK_IMPORTED_MODULE_0__.validate)(form, '.input-name', '.input-phone', '.input-service', 'input[type="checkbox"]');
       let formData = new FormData(form);
       if (isValid) {
+        document.body.classList.add('sending');
         let response = await fetch('https://jsonplaceholder.typicode.com/posts', {
           method: 'POST',
           body: formData
         });
         if (response.ok) {
-          document.body.classList.add('sending');
-          form.classList.add('sending');
-          document.querySelector('.loader-wrapper').classList.add('active');
-
-          // alert('Данные отправлены');
-          //     let result = await response.json();
-          //     alert(result.message);
-          //     form.reset();
-          //     form.querySelector('input[type="checkbox"]').classList.remove('success');
+          let result = await response.json();
+          alert(result.message);
+          form.reset();
+          form.querySelector('input[type="checkbox"]').classList.remove('success');
+          document.body.classList.remove('sending');
         } else {
           alert("Ошибка");
         }

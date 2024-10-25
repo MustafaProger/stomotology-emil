@@ -13,21 +13,17 @@ export default function forms() {
             let formData = new FormData(form);
 
             if (isValid) {
-
+                document.body.classList.add('sending');
                 let response = await fetch('https://jsonplaceholder.typicode.com/posts', {
                     method: 'POST',
                     body: formData
                 })
                 if (response.ok) {
-                    document.body.classList.add('sending');
-                    form.classList.add('sending');
-                    document.querySelector('.loader-wrapper').classList.add('active');
-
-                    // alert('Данные отправлены');
-                //     let result = await response.json();
-                //     alert(result.message);
-                //     form.reset();
-                //     form.querySelector('input[type="checkbox"]').classList.remove('success');
+                    let result = await response.json();
+                    alert(result.message);
+                    form.reset();
+                    form.querySelector('input[type="checkbox"]').classList.remove('success');
+                    document.body.classList.remove('sending');
                 } else {
                     alert("Ошибка");
                 }

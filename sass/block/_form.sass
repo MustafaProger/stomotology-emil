@@ -1,18 +1,26 @@
+body
+    position: relative
+
+body::after 
+    content: ""
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 52
+    background: rgba(0, 0, 0, 0.4)
+    display: none
+
+body.sending
+    overflow: hidden
+
+body.sending::after
+    display: block
+    
 .form
     position: relative
-    form::after 
-        content: ""
-        position: fixed
-        top: 0
-        left: 0
-        width: 100%
-        height: 100%
-        z-index: 1001
-        background: rgba(0, 0, 0, 0.4)
-        display: none
 
-    form.sending::after
-        display: block
 
     &-open 
         display: block
