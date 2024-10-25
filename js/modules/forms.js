@@ -14,7 +14,7 @@ export default function forms() {
 
             if (isValid) {
                 document.body.classList.add('sending');
-                let response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+                let response = await fetch('php/php/make_appointment.php', {
                     method: 'POST',
                     body: formData
                 })
@@ -26,6 +26,7 @@ export default function forms() {
                     document.body.classList.remove('sending');
                 } else {
                     alert("Ошибка");
+                    document.body.classList.remove('sending');
                 }
 
             } else {
