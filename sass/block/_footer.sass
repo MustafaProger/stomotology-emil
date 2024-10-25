@@ -1,0 +1,98 @@
+$primary-bg: #1F1F1F
+$text-color: #BABABA
+$title-color: #fff
+
+.footer 
+  position: relative
+  padding: 50px 0
+  background: $primary-bg
+
+  &__author &__contact-phones 
+      a 
+        display: block 
+        margin-bottom: 10px 
+  
+  &__content 
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+  
+
+  &__title 
+    font-size: 23px
+    color: $title-color
+    margin: 20px 0
+  
+
+  &__text, span 
+    text-align: left
+    color: $text-color
+  
+  address
+        line-height: 25px
+    
+  &__social-links 
+    display: flex
+    flex-direction: column
+    justify-content: center
+    gap: 10px
+    margin-top: 20px
+
+    a
+      display: flex
+      align-items: center
+      gap: 10px
+
+      img 
+        width: 32px
+        height: 32px
+
+  &__back-up 
+    position: absolute
+    bottom: 12%
+    right: 5%
+    text-align: right
+
+    &-link 
+      color: $text-color
+      text-decoration: none
+
+      img 
+        position: absolute
+        top: -30%
+        right: -10%
+
+
+  &__copyright 
+    color: $text-color
+    font-size: 16px
+    text-align: center
+    margin-top: 20px
+  
+
+  a:hover 
+    color: $title-color !important
+  q
+
+.page-up 
+  position: fixed
+  bottom: 40px
+  right: 40px
+  display: none
+
+  &::after 
+    content: ''
+    position: absolute
+    right: -47%
+    top: -47%
+    z-index: -1
+    width: 60px
+    height: 60px
+    border-radius: 100%
+    background-color: #F6F6F6
+    transition: all 0.25s
+  
+
+  img 
+    width: 30px
+    height: 30px
+  
