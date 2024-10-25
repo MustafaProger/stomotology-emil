@@ -36,8 +36,8 @@ if ($html_content === false) {
 
 $html_content = str_replace('{NAME}', $name, $html_content);
 $html_content = str_replace('{PHONE}', $phone, $html_content);
-$html_content = str_replace('{DATE}', $date, $html_content);
 $html_content = str_replace('{SERVICE}', $service, $html_content);
+$html_content = str_replace('{DATE}', $date, $html_content);
 $html_content = str_replace('{TEXTAREA}', $textarea, $html_content);
 
 $mail->Body = $html_content;
