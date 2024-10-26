@@ -95,10 +95,7 @@
         <p class="subtitle font_size_16px">Профессиональные стоматологические услуги от врача с опытом, включая
           имплантацию и протезирование на имплантатах.</p>
         <a class="btn font_size_16px btn_for_modal" data-target="modal2">Бесплатная консультация</a>
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
       </div>
     </div>
   </main>
@@ -511,7 +508,7 @@
               <!-- Поле для даты и времени приема -->
               <div class="input-field">
                 <input name="appointment_date" type="datetime-local" class="form__input input-datetime">
-                <label class="label label-datetime">Дата и время удобное для связи</label>
+                <label class="label label-datetime">Дата и время приёма</label>
               </div>
 
               <!-- Поле для комментариев -->
@@ -586,17 +583,12 @@
   <div class="modal" id="modal1">
     <div class="modal__dialog">
       <div class="modal__content">
-<<<<<<< HEAD
-=======
-        <!-- Заголовок модального окна -->
->>>>>>> origin/master
         <h1 class="title form__title font_size_42px">Запись на прием</h1>
         <div data-close="" class="modal__close">&times;</div>
 
         <form action="#">
 
           <div class="inputs-field">
-<<<<<<< HEAD
             <div class="input-field">
               <input name="name" type="text" class="form__input input-name">
               <label class="label label-name">Имя</label>
@@ -609,29 +601,11 @@
 
             <div class="input-field">
               <select name="service" class="form__input input-service">
-=======
-            <!-- Поле для имени -->
-            <div class="input-field">
-              <input name="name" type="text" class="form__input input-name" >
-              <label class="label label-name">Имя</label>
-            </div>
-
-            <!-- Поле для телефона -->
-            <div class="input-field">
-              <input name="phone" data-tel-input maxlength="18" type="tel" class="form__input input-phone" >
-              <label class="label label-phone">Номер телефона</label>
-            </div>
-
-            <!-- Поле для выбора услуги -->
-            <div class="input-field">
-              <select name="service" class="form__input input-service" >
->>>>>>> origin/master
                 <option value="" disabled selected>Выберите услугу</option>
                 <option value="Чистка зубов">Чистка зубов</option>
                 <option value="Лечение кариеса">Лечение кариеса</option>
                 <option value="Отбеливание">Отбеливание</option>
               </select>
-<<<<<<< HEAD
 
             </div>
 
@@ -640,48 +614,25 @@
               <label class="label label-datetime">Дата и время приёма</label>
             </div>
 
-=======
-            </div>
-
-            <!-- Поле для даты и времени приема -->
-            <div class="input-field">
-              <input name="appointment_date" type="datetime-local" class="form__input input-datetime" >
-              <label class="label label-datetime">Дата и время приёма</label>
-            </div>
-
-            <!-- Поле для комментариев -->
->>>>>>> origin/master
             <div class="input-field">
               <textarea name="comments" class="form__input input-comments"></textarea>
               <label class="label label-comments">Комментарии</label>
             </div>
           </div>
 
-<<<<<<< HEAD
           <div class="form__policy">
             <input type="checkbox" name="checkbox" class="input-checkbox">
             <label for="checkbox">
-=======
-          <!-- Поле для checkbox согласия с политикой конфиденциальности -->
-          <div class="form__policy">
-            <input type="checkbox" name="checkbox" id="checkbox" >
-            <label for="checkbox" id="label__checkbox">
->>>>>>> origin/master
               Я согласен(а) с <a href="privacy.html" target="_blank">политикой конфиденциальности</a>
             </label>
           </div>
 
-<<<<<<< HEAD
-=======
-          <!-- Кнопка для отправки формы -->
->>>>>>> origin/master
           <button type="submit" class="btn form__btn">Записаться</button>
         </form>
       </div>
     </div>
   </div>
 
-<<<<<<< HEAD
   <div class="modal" id="modal2">
     <div class="modal__dialog">
       <div class="modal__content">
@@ -713,47 +664,10 @@
       </div>
     </div>
   </div>
-=======
->>>>>>> origin/master
 
   <div class="loader-wrapper">
     <div class="custom-loader"></div>
   </div>
 
-
-  <div class="modal" id="modal2">
-    <div class="modal__dialog">
-        <div class="modal__content">
-                <h1 class="title form__title font_size_42px">Консультация</h1>
-                <div data-close="" class="modal__close">&times;</div>
-                
-                <form action="#">
-                    <div class="inputs-field">
-                        <div class="input-field">
-                            <input name="name" type="text" class="form__input input-name">
-                            <label class="label label-name">Имя</label>
-                        </div>
-
-                        <div class="input-field">
-                            <input name="phone" data-tel-input maxlength="18" type="tel" class="form__input input-phone">
-                            <label class="label label-phone">Номер телефона</label>
-                        </div>
-                    </div>
-
-                    <div class="form__policy">
-                        <input type="checkbox" name="checkbox" id="checkbox-simple" >
-                        <label for="checkbox-simple" id="label__checkbox-simple">
-                            Я согласен(а) с <a href="privacy.html" target="_blank">политикой конфиденциальности</a>
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn form__btn">Отправить</button>
-                </form>
-        </div>
-    </div>
-  </div>
-
   <script src="js/bundle.js"></script>
 </body>
-
-</html>
