@@ -1,12 +1,12 @@
-function handleFloatingLabel(labelsForInputSelector, labelsForTextareaSelector, inputSelector, textareaSelector) {
-    const labelsForInput = document.querySelectorAll(labelsForInputSelector);
-    const labelsForTextarea = document.querySelectorAll(labelsForTextareaSelector);
-    const inputs = document.querySelectorAll(inputSelector);
-    const textareas = document.querySelectorAll(textareaSelector);
+function handleFloatingLabel(formElement, labelsForInputSelector, labelsForTextareaSelector, inputSelector, textareaSelector) {
+    const labelsForInput = formElement.querySelectorAll(labelsForInputSelector);
+    const labelsForTextarea = formElement.querySelectorAll(labelsForTextareaSelector);
+    const inputs = formElement.querySelectorAll(inputSelector);
+    const textareas = formElement.querySelectorAll(textareaSelector);
 
-    function moveLabel(isActive, index, labelName, topValue, translateValue) {
-        const label = labelName[index];
-        if (label) { // Проверка на существование
+    function moveLabel(isActive, index, labelElements, topValue, translateValue) {
+        const label = labelElements[index];
+        if (label) {
             if (isActive) {
                 label.style.fontSize = '0.8rem';
                 label.style.top = `${topValue}px`;
@@ -17,10 +17,9 @@ function handleFloatingLabel(labelsForInputSelector, labelsForTextareaSelector, 
                 label.style.transform = '';
             }
         } else {
-            console.error(`Label not found for index: ${index}`); // Логируем ошибку
+            console.error(`Label not found for index: ${index}`);
         }
     }
-
 
     inputs.forEach((input, index) => {
         input.addEventListener('input', () => moveLabel(input.value.trim() !== '', index, labelsForInput, 10, 150));
@@ -29,6 +28,19 @@ function handleFloatingLabel(labelsForInputSelector, labelsForTextareaSelector, 
     textareas.forEach((textarea, index) => {
         textarea.addEventListener('input', () => moveLabel(textarea.value.trim() !== '', index, labelsForTextarea, 16.67, 250));
     });
+}
+
+function backFlag(formElement) {
+    if (typeof formElement === 'string') {
+        formElement = document.querySelector(formElement);
+    }
+    
+    if (!formElement) {
+        console.error("Элемент формы не найден.");
+        return;
+    }
+
+    handleFloatingLabel(formElement, '.label', '.label-comments', '.inputs-field input', 'textarea');
 }
 
 function validate(form, inputName, inputPhone, inputService, inputCheckbox) {
@@ -160,6 +172,7 @@ function validationCheckbox(checkboxsSelector) {
 
 export {
     handleFloatingLabel,
+    backFlag,
     validate,
     validationCheckbox
 };

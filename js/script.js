@@ -4,13 +4,9 @@ import animationScroll from "./modules/animationScroll";
 import cardFlip from "./modules/card-flip";
 import works from "./modules/works";
 import sliderFeedback from "./modules/slider-feedback";
-import { handleFloatingLabel, validationCheckbox } from "./modules/validation";
+import { backFlag, validationCheckbox } from "./modules/validation";
 import forms from "./modules/forms";
 import openModal from "./modules/openModal";
-
-function flag(nameBlock) {
-    handleFloatingLabel(`${nameBlock} .label`, `${nameBlock} .label-comments`, `${nameBlock} .inputs-field input`, `${nameBlock} textarea`);
-}
 
 document.addEventListener('DOMContentLoaded', () => {
     animationScroll();
@@ -26,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
     works();
     sliderFeedback();
     validationCheckbox('input[type="checkbox"]');
-    flag('.form');
-    flag('#modal1');
-    flag('#modal2');
+    backFlag('.form');
+    backFlag('#modal1');
+    backFlag('#modal2');
     forms();
     openModal();
 })
