@@ -143,6 +143,46 @@ function forms() {
       } else {}
     });
   });
+
+  // Получаем все кнопки для открытия модальных окон
+  const modalButtons = document.querySelectorAll('.btn_for_modal');
+
+  // Получаем все модальные окна
+  const modals = document.querySelectorAll('.modal');
+
+  // Функция для открытия модального окна
+  function openModal(modal) {
+    modal.style.display = 'flex';
+  }
+
+  // Функция для закрытия модального окна
+  function closeModal(modal) {
+    modal.style.display = 'none';
+  }
+
+  // Добавляем обработчики событий на кнопки открытия модальных окон
+  modalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const targetModalId = button.getAttribute('data-target');
+      const targetModal = document.getElementById(targetModalId);
+      openModal(targetModal);
+    });
+  });
+
+  // Добавляем обработчики событий на кнопки закрытия модальных окон
+  modals.forEach(modal => {
+    const closeButton = modal.querySelector('.modal__close');
+    closeButton.addEventListener('click', () => closeModal(modal));
+  });
+
+  // Закрытие модального окна при клике вне его содержимого
+  window.addEventListener('click', function (event) {
+    modals.forEach(modal => {
+      if (event.target === modal) {
+        closeModal(modal);
+      }
+    });
+  });
 }
 
 /***/ }),
@@ -393,18 +433,31 @@ function handleFloatingLabel(labelsForInputSelector, labelsForTextareaSelector, 
   const inputs = document.querySelectorAll(inputSelector);
   const textareas = document.querySelectorAll(textareaSelector);
   function moveLabel(isActive, index, labelName, topValue, translateValue) {
-    const label = labelName[index]; // Связываем конкретный инпут с его лейблом
-    if (isActive) {
-      label.style.cssText = `font-size: 0.8rem; top: ${topValue}px; transform: translateY(-${translateValue}%);`;
+    const label = labelName[index];
+    if (label) {
+      // Проверка на существование
+      if (isActive) {
+        label.style.fontSize = '0.8rem';
+        label.style.top = `${topValue}px`;
+        label.style.transform = `translateY(-${translateValue}%)`;
+      } else {
+        label.style.fontSize = '';
+        label.style.top = '';
+        label.style.transform = '';
+      }
     } else {
-      label.style.cssText = ''; // Возвращаем лейбл в исходное положение, если инпут пустой
+      console.error(`Label not found for index: ${index}`); // Логируем ошибку
     }
   }
   inputs.forEach((input, index) => {
     input.addEventListener('input', () => moveLabel(input.value.trim() !== '', index, labelsForInput, 10, 150));
+    // Начальная проверка для установки состояния лейблов
+    moveLabel(input.value.trim() !== '', index, labelsForInput, 10, 150);
   });
   textareas.forEach((textarea, index) => {
-    textarea.addEventListener('input', () => moveLabel(textarea.value.trim() !== '', index, labelsForTextarea, 16.6666666667, 250));
+    textarea.addEventListener('input', () => moveLabel(textarea.value.trim() !== '', index, labelsForTextarea, 16.67, 250));
+    // Начальная проверка для установки состояния лейблов
+    moveLabel(textarea.value.trim() !== '', index, labelsForTextarea, 16.67, 250);
   });
 }
 function validate(form, inputName, inputPhone, inputService, inputCheckbox) {
@@ -677,7 +730,9 @@ document.addEventListener('DOMContentLoaded', () => {
   (0,_modules_works__WEBPACK_IMPORTED_MODULE_4__["default"])();
   (0,_modules_slider_feedback__WEBPACK_IMPORTED_MODULE_5__["default"])();
   (0,_modules_validation__WEBPACK_IMPORTED_MODULE_6__.validationCheckbox)('input[type="checkbox"]');
-  (0,_modules_validation__WEBPACK_IMPORTED_MODULE_6__.handleFloatingLabel)('.label', '.label-comments', '.form .inputs-field input', 'textarea');
+  (0,_modules_validation__WEBPACK_IMPORTED_MODULE_6__.handleFloatingLabel)('.form .label', '.form .label-comments', '.form .form__input', '.form textarea');
+  (0,_modules_validation__WEBPACK_IMPORTED_MODULE_6__.handleFloatingLabel)('#modal1 .label', '#modal1 .label-comments', '#modal1 .form__input', '#modal1 textarea');
+  (0,_modules_validation__WEBPACK_IMPORTED_MODULE_6__.handleFloatingLabel)('#modal2 .label', '#modal2 .label-comments', '#modal2 .form__input', '#modal2 textarea');
   (0,_modules_forms__WEBPACK_IMPORTED_MODULE_7__["default"])();
 });
 })();

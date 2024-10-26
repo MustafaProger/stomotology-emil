@@ -5,22 +5,33 @@ function handleFloatingLabel(labelsForInputSelector, labelsForTextareaSelector, 
     const textareas = document.querySelectorAll(textareaSelector);
 
     function moveLabel(isActive, index, labelName, topValue, translateValue) {
-        const label = labelName[index]; // Связываем конкретный инпут с его лейблом
-        if (isActive) {
-            label.style.cssText = `font-size: 0.8rem; top: ${topValue}px; transform: translateY(-${translateValue}%);`;
+        const label = labelName[index];
+        if (label) { // Проверка на существование
+            if (isActive) {
+                label.style.fontSize = '0.8rem';
+                label.style.top = `${topValue}px`;
+                label.style.transform = `translateY(-${translateValue}%)`;
+            } else {
+                label.style.fontSize = '';
+                label.style.top = '';
+                label.style.transform = '';
+            }
         } else {
-            label.style.cssText = ''; // Возвращаем лейбл в исходное положение, если инпут пустой
+            console.error(`Label not found for index: ${index}`); // Логируем ошибку
         }
     }
 
     inputs.forEach((input, index) => {
-        input.addEventListener('input', () => moveLabel(input.value.trim() !== '', index, labelsForInput, 10, 150))
-    })
+        input.addEventListener('input', () => moveLabel(input.value.trim() !== '', index, labelsForInput, 10, 150));
+        // Начальная проверка для установки состояния лейблов
+        moveLabel(input.value.trim() !== '', index, labelsForInput, 10, 150);
+    });
 
     textareas.forEach((textarea, index) => {
-        textarea.addEventListener('input', () => moveLabel(textarea.value.trim() !== '', index, labelsForTextarea, 16.6666666667, 250))
-    })
-
+        textarea.addEventListener('input', () => moveLabel(textarea.value.trim() !== '', index, labelsForTextarea, 16.67, 250));
+        // Начальная проверка для установки состояния лейблов
+        moveLabel(textarea.value.trim() !== '', index, labelsForTextarea, 16.67, 250);
+    });
 }
 
 function validate(form, inputName, inputPhone, inputService, inputCheckbox) {

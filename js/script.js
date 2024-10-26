@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     works();
     sliderFeedback();
     validationCheckbox('input[type="checkbox"]')
-    handleFloatingLabel('.label', '.label-comments', '.form .inputs-field input', 'textarea');
+    handleFloatingLabel('.form .label', '.form .label-comments', '.form .form__input', '.form textarea');
+    handleFloatingLabel('#modal1 .label', '#modal1 .label-comments', '#modal1 .form__input', '#modal1 textarea');
+    handleFloatingLabel('#modal2 .label', '#modal2 .label-comments', '#modal2 .form__input', '#modal2 textarea');
+    
     forms();
 })

@@ -1,4 +1,6 @@
-import { validate } from './validation';
+import {
+    validate
+} from './validation';
 
 export default function forms() {
     const forms = document.querySelectorAll('form');
@@ -35,4 +37,44 @@ export default function forms() {
         });
     })
 
+
+    // Получаем все кнопки для открытия модальных окон
+    const modalButtons = document.querySelectorAll('.btn_for_modal');
+
+    // Получаем все модальные окна
+    const modals = document.querySelectorAll('.modal');
+
+    // Функция для открытия модального окна
+    function openModal(modal) {
+        modal.style.display = 'flex';
+    }
+
+    // Функция для закрытия модального окна
+    function closeModal(modal) {
+        modal.style.display = 'none';
+    }
+
+    // Добавляем обработчики событий на кнопки открытия модальных окон
+    modalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetModalId = button.getAttribute('data-target');
+            const targetModal = document.getElementById(targetModalId);
+            openModal(targetModal);
+        });
+    });
+
+    // Добавляем обработчики событий на кнопки закрытия модальных окон
+    modals.forEach(modal => {
+        const closeButton = modal.querySelector('.modal__close');
+        closeButton.addEventListener('click', () => closeModal(modal));
+    });
+
+    // Закрытие модального окна при клике вне его содержимого
+    window.addEventListener('click', function (event) {
+        modals.forEach(modal => {
+            if (event.target === modal) {
+                closeModal(modal);
+            }
+        });
+    });
 }

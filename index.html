@@ -82,7 +82,7 @@
             <li class="list__item font_size_16px"><a href="#feedback" class="list__hyperlink">Отзывы</a></li>
             <li class="list__item font_size_16px"><a href="#form" class="list__hyperlink">Связаться</a></li>
           </ul>
-          <a class="btn font_size_16px">Записаться на прием</a>
+          <a class="btn font_size_16px btn_for_modal" data-target="modal1">Записаться на прием</a>
         </nav>
       </div>
     </div>
@@ -94,7 +94,7 @@
         <h1 class="title font_size_52px">Ваша улыбка — моя забота</h1>
         <p class="subtitle font_size_16px">Профессиональные стоматологические услуги от врача с опытом, включая
           имплантацию и протезирование на имплантатах.</p>
-        <a class="btn font_size_16px">Бесплатная консультация</a>
+        <a class="btn font_size_16px btn_for_modal" data-target="modal2">Бесплатная консультация</a>
       </div>
     </div>
   </main>
@@ -478,7 +478,7 @@
   <section class="form" id="form">
     <div class="form__dialog">
       <div class="container">
-        <h1 class="title form__title font_size_42px">Запись на прием</h1>
+        <h1 class="title form__title font_size_42px">Связаться с нами</h1>
         <div class="form__content">
           <form action="#">
             <div class="inputs-field">
@@ -507,7 +507,7 @@
               <!-- Поле для даты и времени приема -->
               <div class="input-field">
                 <input name="appointment_date" type="datetime-local" class="form__input input-datetime">
-                <label class="label label-datetime">Дата и время приёма</label>
+                <label class="label label-datetime">Дата и время удобное для связи</label>
               </div>
 
               <!-- Поле для комментариев -->
@@ -578,8 +578,103 @@
       </div>
     </div>
   </footer>
+
+  <div class="modal" id="modal1">
+    <div class="modal__dialog">
+      <div class="modal__content">
+        <!-- Заголовок модального окна -->
+        <h1 class="title form__title font_size_42px">Запись на прием</h1>
+        <div data-close="" class="modal__close">&times;</div>
+
+        <form action="#">
+
+          <div class="inputs-field">
+            <!-- Поле для имени -->
+            <div class="input-field">
+              <input name="name" type="text" class="form__input input-name" >
+              <label class="label label-name">Имя</label>
+            </div>
+
+            <!-- Поле для телефона -->
+            <div class="input-field">
+              <input name="phone" data-tel-input maxlength="18" type="tel" class="form__input input-phone" >
+              <label class="label label-phone">Номер телефона</label>
+            </div>
+
+            <!-- Поле для выбора услуги -->
+            <div class="input-field">
+              <select name="service" class="form__input input-service" >
+                <option value="" disabled selected>Выберите услугу</option>
+                <option value="Чистка зубов">Чистка зубов</option>
+                <option value="Лечение кариеса">Лечение кариеса</option>
+                <option value="Отбеливание">Отбеливание</option>
+              </select>
+            </div>
+
+            <!-- Поле для даты и времени приема -->
+            <div class="input-field">
+              <input name="appointment_date" type="datetime-local" class="form__input input-datetime" >
+              <label class="label label-datetime">Дата и время приёма</label>
+            </div>
+
+            <!-- Поле для комментариев -->
+            <div class="input-field">
+              <textarea name="comments" class="form__input input-comments"></textarea>
+              <label class="label label-comments">Комментарии</label>
+            </div>
+          </div>
+
+          <!-- Поле для checkbox согласия с политикой конфиденциальности -->
+          <div class="form__policy">
+            <input type="checkbox" name="checkbox" id="checkbox" >
+            <label for="checkbox" id="label__checkbox">
+              Я согласен(а) с <a href="privacy.html" target="_blank">политикой конфиденциальности</a>
+            </label>
+          </div>
+
+          <!-- Кнопка для отправки формы -->
+          <button type="submit" class="btn form__btn">Записаться</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
   <div class="loader-wrapper">
     <div class="custom-loader"></div>
+  </div>
+
+
+  <div class="modal" id="modal2">
+    <div class="modal__dialog">
+        <div class="modal__content">
+                <h1 class="title form__title font_size_42px">Консультация</h1>
+                <div data-close="" class="modal__close">&times;</div>
+                
+                <form action="#">
+                    <div class="inputs-field">
+                        <div class="input-field">
+                            <input name="name" type="text" class="form__input input-name">
+                            <label class="label label-name">Имя</label>
+                        </div>
+
+                        <div class="input-field">
+                            <input name="phone" data-tel-input maxlength="18" type="tel" class="form__input input-phone">
+                            <label class="label label-phone">Номер телефона</label>
+                        </div>
+                    </div>
+
+                    <div class="form__policy">
+                        <input type="checkbox" name="checkbox" id="checkbox-simple" >
+                        <label for="checkbox-simple" id="label__checkbox-simple">
+                            Я согласен(а) с <a href="privacy.html" target="_blank">политикой конфиденциальности</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn form__btn">Отправить</button>
+                </form>
+        </div>
+    </div>
   </div>
 
   <script src="js/bundle.js"></script>
