@@ -119,13 +119,20 @@ __webpack_require__.r(__webpack_exports__);
 function forms() {
   const forms = document.querySelectorAll('form');
   forms.forEach(form => {
+    if (form.classList.contains('make_appointment')) {
+      sendmail(form, 'make_appointment');
+    } else if (form.classList.contains('consultation')) {
+      sendmail(form, 'consultation');
+    }
+  });
+  function sendmail(form, namePhpFile) {
     form.addEventListener('submit', async event => {
       event.preventDefault();
       let isValid = (0,_validation__WEBPACK_IMPORTED_MODULE_0__.validate)(form, '.input-name', '.input-phone', '.input-service', '.input-checkbox');
       let formData = new FormData(form);
       if (isValid) {
         document.body.classList.add('sending');
-        let response = await fetch('php/php/make_appointment.php', {
+        let response = await fetch(`php/php/${namePhpFile}.php`, {
           method: 'POST',
           body: formData
         });
@@ -141,7 +148,7 @@ function forms() {
         }
       } else {}
     });
-  });
+  }
 }
 
 /***/ }),

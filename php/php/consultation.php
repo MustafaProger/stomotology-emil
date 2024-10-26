@@ -8,9 +8,6 @@ require '../phpmailer/src/SMTP.php';
 
 $name = $_POST['name'];
 $phone = $_POST['phone'];
-$date = $_POST['appointment_date'];
-$service = $_POST['service'];
-$textarea = $_POST['comments'];
 
 $mail = new PHPMailer;
 $mail->CharSet = 'utf-8';
@@ -29,16 +26,13 @@ $mail->isHTML(true);
 
 $mail->Subject ='Сайт';
 
-$html_content = file_get_contents('../html/make_appointment.html');
+$html_content = file_get_contents('../html/consultation.html');
 if ($html_content === false) {
     die('Не удалось прочитать файл HTML');
 }
 
 $html_content = str_replace('{NAME}', $name, $html_content);
 $html_content = str_replace('{PHONE}', $phone, $html_content);
-$html_content = str_replace('{SERVICE}', $service, $html_content);
-$html_content = str_replace('{DATE}', $date, $html_content);
-$html_content = str_replace('{TEXTAREA}', $textarea, $html_content);
 
 $mail->Body = $html_content;
 
