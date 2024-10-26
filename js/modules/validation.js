@@ -23,13 +23,16 @@ function handleFloatingLabel(labelsForInputSelector, labelsForTextareaSelector, 
 
 
     inputs.forEach((input, index) => {
-        input.addEventListener('input', () => moveLabel(input.value.trim() !== '', index, labelsForInput, 10, 150))
-    })
+        input.addEventListener('input', () => moveLabel(input.value.trim() !== '', index, labelsForInput, 10, 150));
+        // Начальная проверка для установки состояния лейблов
+        moveLabel(input.value.trim() !== '', index, labelsForInput, 10, 150);
+    });
 
     textareas.forEach((textarea, index) => {
-        textarea.addEventListener('input', () => moveLabel(textarea.value.trim() !== '', index, labelsForTextarea, 16.6666666667, 250))
-    })
-
+        textarea.addEventListener('input', () => moveLabel(textarea.value.trim() !== '', index, labelsForTextarea, 16.67, 250));
+        // Начальная проверка для установки состояния лейблов
+        moveLabel(textarea.value.trim() !== '', index, labelsForTextarea, 16.67, 250);
+    });
 }
 
 function validate(form, inputName, inputPhone, inputService, inputCheckbox) {
