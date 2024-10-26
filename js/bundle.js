@@ -120,9 +120,8 @@ function forms() {
   const forms = document.querySelectorAll('form');
   forms.forEach(form => {
     form.addEventListener('submit', async event => {
-      event.preventDefault(); // Предотвращаем отправку формы для валидации
-
-      let isValid = (0,_validation__WEBPACK_IMPORTED_MODULE_0__.validate)(form, '.input-name', '.input-phone', '.input-service', 'input[type="checkbox"]');
+      event.preventDefault();
+      let isValid = (0,_validation__WEBPACK_IMPORTED_MODULE_0__.validate)(form, '.input-name', '.input-phone', '.input-service', '.input-checkbox');
       let formData = new FormData(form);
       if (isValid) {
         document.body.classList.add('sending');
@@ -141,6 +140,32 @@ function forms() {
           document.body.classList.remove('sending');
         }
       } else {}
+    });
+  });
+  const modalButtons = document.querySelectorAll('.btn_for_modal');
+  const modals = document.querySelectorAll('.modal');
+  function openModal(modal) {
+    modal.style.display = 'flex';
+  }
+  function closeModal(modal) {
+    modal.style.display = 'none';
+  }
+  modalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const targetModalId = button.getAttribute('data-target');
+      const targetModal = document.getElementById(targetModalId);
+      openModal(targetModal);
+    });
+  });
+  modals.forEach(modal => {
+    const closeButton = modal.querySelector('.modal__close');
+    closeButton.addEventListener('click', () => closeModal(modal));
+  });
+  window.addEventListener('click', function (event) {
+    modals.forEach(modal => {
+      if (event.target === modal) {
+        closeModal(modal);
+      }
     });
   });
 }
@@ -393,11 +418,20 @@ function handleFloatingLabel(labelsForInputSelector, labelsForTextareaSelector, 
   const inputs = document.querySelectorAll(inputSelector);
   const textareas = document.querySelectorAll(textareaSelector);
   function moveLabel(isActive, index, labelName, topValue, translateValue) {
-    const label = labelName[index]; // Связываем конкретный инпут с его лейблом
-    if (isActive) {
-      label.style.cssText = `font-size: 0.8rem; top: ${topValue}px; transform: translateY(-${translateValue}%);`;
+    const label = labelName[index];
+    if (label) {
+      // Проверка на существование
+      if (isActive) {
+        label.style.fontSize = '0.8rem';
+        label.style.top = `${topValue}px`;
+        label.style.transform = `translateY(-${translateValue}%)`;
+      } else {
+        label.style.fontSize = '';
+        label.style.top = '';
+        label.style.transform = '';
+      }
     } else {
-      label.style.cssText = ''; // Возвращаем лейбл в исходное положение, если инпут пустой
+      console.error(`Label not found for index: ${index}`); // Логируем ошибку
     }
   }
   inputs.forEach((input, index) => {
@@ -411,7 +445,7 @@ function validate(form, inputName, inputPhone, inputService, inputCheckbox) {
   const nameInput = form.querySelector(inputName);
   const phoneInput = form.querySelector(inputPhone);
   const serviceInput = form.querySelector(inputService);
-  const checkboxInput = document.querySelectorAll(inputCheckbox);
+  const checkboxInput = form.querySelectorAll(inputCheckbox);
   let isValid = true;
   let message = {
     name: {
@@ -435,8 +469,10 @@ function validate(form, inputName, inputPhone, inputService, inputCheckbox) {
   } = message;
   errorWork(nameInput, 'name', 2, /\d/, name);
   errorWork(phoneInput, 'phone', 11, /\D/, phone);
-  errorWork(serviceInput, 'service', 1, null, service);
   validationCheckbox(checkboxInput);
+  if (serviceInput) {
+    errorWork(serviceInput, 'service', 1, null, service);
+  }
   return isValid;
   function errorWork(input, classError, length, regex, message) {
     createError(input, classError);
@@ -663,6 +699,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+function flag(nameBlock) {
+  (0,_modules_validation__WEBPACK_IMPORTED_MODULE_6__.handleFloatingLabel)(`${nameBlock} .label`, `${nameBlock} .label-comments`, `${nameBlock} .inputs-field input`, `${nameBlock} textarea`);
+}
 document.addEventListener('DOMContentLoaded', () => {
   (0,_modules_animationScroll__WEBPACK_IMPORTED_MODULE_2__["default"])();
   (0,_modules_burger__WEBPACK_IMPORTED_MODULE_0__["default"])();
@@ -677,7 +716,9 @@ document.addEventListener('DOMContentLoaded', () => {
   (0,_modules_works__WEBPACK_IMPORTED_MODULE_4__["default"])();
   (0,_modules_slider_feedback__WEBPACK_IMPORTED_MODULE_5__["default"])();
   (0,_modules_validation__WEBPACK_IMPORTED_MODULE_6__.validationCheckbox)('input[type="checkbox"]');
-  (0,_modules_validation__WEBPACK_IMPORTED_MODULE_6__.handleFloatingLabel)('.label', '.label-comments', '.form .inputs-field input', 'textarea');
+  flag('.form');
+  flag('#modal1');
+  flag('#modal2');
   (0,_modules_forms__WEBPACK_IMPORTED_MODULE_7__["default"])();
 });
 })();

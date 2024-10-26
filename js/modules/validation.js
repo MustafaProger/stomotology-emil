@@ -5,13 +5,22 @@ function handleFloatingLabel(labelsForInputSelector, labelsForTextareaSelector, 
     const textareas = document.querySelectorAll(textareaSelector);
 
     function moveLabel(isActive, index, labelName, topValue, translateValue) {
-        const label = labelName[index]; // Связываем конкретный инпут с его лейблом
-        if (isActive) {
-            label.style.cssText = `font-size: 0.8rem; top: ${topValue}px; transform: translateY(-${translateValue}%);`;
+        const label = labelName[index];
+        if (label) { // Проверка на существование
+            if (isActive) {
+                label.style.fontSize = '0.8rem';
+                label.style.top = `${topValue}px`;
+                label.style.transform = `translateY(-${translateValue}%)`;
+            } else {
+                label.style.fontSize = '';
+                label.style.top = '';
+                label.style.transform = '';
+            }
         } else {
-            label.style.cssText = ''; // Возвращаем лейбл в исходное положение, если инпут пустой
+            console.error(`Label not found for index: ${index}`); // Логируем ошибку
         }
     }
+
 
     inputs.forEach((input, index) => {
         input.addEventListener('input', () => moveLabel(input.value.trim() !== '', index, labelsForInput, 10, 150))
@@ -27,7 +36,7 @@ function validate(form, inputName, inputPhone, inputService, inputCheckbox) {
     const nameInput = form.querySelector(inputName);
     const phoneInput = form.querySelector(inputPhone);
     const serviceInput = form.querySelector(inputService);
-    const checkboxInput = document.querySelectorAll(inputCheckbox);
+    const checkboxInput = form.querySelectorAll(inputCheckbox);
 
     let isValid = true;
 
@@ -55,8 +64,10 @@ function validate(form, inputName, inputPhone, inputService, inputCheckbox) {
 
     errorWork(nameInput, 'name', 2, /\d/, name);
     errorWork(phoneInput, 'phone', 11, /\D/, phone);
-    errorWork(serviceInput, 'service', 1, null, service);
     validationCheckbox(checkboxInput);
+    if (serviceInput) {
+        errorWork(serviceInput, 'service', 1, null, service);
+    }
 
     return isValid;
 

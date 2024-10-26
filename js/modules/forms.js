@@ -6,9 +6,9 @@ export default function forms() {
     forms.forEach(form => {
 
         form.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Предотвращаем отправку формы для валидации
+            event.preventDefault();
 
-            let isValid = validate(form, '.input-name', '.input-phone', '.input-service', 'input[type="checkbox"]');
+            let isValid = validate(form, '.input-name', '.input-phone', '.input-service', '.input-checkbox');
 
             let formData = new FormData(form);
 
@@ -35,4 +35,35 @@ export default function forms() {
         });
     })
 
+    const modalButtons = document.querySelectorAll('.btn_for_modal');
+    const modals = document.querySelectorAll('.modal');
+
+    function openModal(modal) {
+        modal.style.display = 'flex';
+    }
+
+    function closeModal(modal) {
+        modal.style.display = 'none';
+    }
+
+    modalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetModalId = button.getAttribute('data-target');
+            const targetModal = document.getElementById(targetModalId);
+            openModal(targetModal);
+        });
+    });
+
+    modals.forEach(modal => {
+        const closeButton = modal.querySelector('.modal__close');
+        closeButton.addEventListener('click', () => closeModal(modal));
+    });
+
+    window.addEventListener('click', function (event) {
+        modals.forEach(modal => {
+            if (event.target === modal) {
+                closeModal(modal);
+            }
+        });
+    });
 }

@@ -7,6 +7,10 @@ import sliderFeedback from "./modules/slider-feedback";
 import { handleFloatingLabel, validationCheckbox } from "./modules/validation";
 import forms from "./modules/forms";
 
+function flag(nameBlock) {
+    handleFloatingLabel(`${nameBlock} .label`, `${nameBlock} .label-comments`, `${nameBlock} .inputs-field input`, `${nameBlock} textarea`);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     animationScroll();
     burger();
@@ -20,7 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
     cardFlip();
     works();
     sliderFeedback();
-    validationCheckbox('input[type="checkbox"]')
-    handleFloatingLabel('.label', '.label-comments', '.form .inputs-field input', 'textarea');
+    validationCheckbox('input[type="checkbox"]');
+    flag('.form');
+    flag('#modal1');
+    flag('#modal2');
     forms();
 })
