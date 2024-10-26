@@ -458,13 +458,9 @@ function handleFloatingLabel(labelsForInputSelector, labelsForTextareaSelector, 
   }
   inputs.forEach((input, index) => {
     input.addEventListener('input', () => moveLabel(input.value.trim() !== '', index, labelsForInput, 10, 150));
-    // Начальная проверка для установки состояния лейблов
-    moveLabel(input.value.trim() !== '', index, labelsForInput, 10, 150);
   });
   textareas.forEach((textarea, index) => {
     textarea.addEventListener('input', () => moveLabel(textarea.value.trim() !== '', index, labelsForTextarea, 16.67, 250));
-    // Начальная проверка для установки состояния лейблов
-    moveLabel(textarea.value.trim() !== '', index, labelsForTextarea, 16.67, 250);
   });
 }
 function validate(form, inputName, inputPhone, inputService, inputCheckbox) {
@@ -511,23 +507,21 @@ function validate(form, inputName, inputPhone, inputService, inputCheckbox) {
     validateField();
   }
   function validationNamePhone(input, error, length, regex, message) {
-    let fieldIsValid = true;
     if (input.value.trim() === '') {
       error.innerHTML = message.required;
       error.style.display = 'block';
-      fieldIsValid = false;
+      isValid = false;
     } else if (regex && regex.test(input.value)) {
       error.innerHTML = message.correct;
       error.style.display = 'block';
-      fieldIsValid = false;
+      isValid = false;
     } else if (input.value.length < length) {
       error.innerHTML = message.minLength;
       error.style.display = 'block';
-      fieldIsValid = false;
+      isValid = false;
     } else {
       error.style.display = 'none';
     }
-    if (!fieldIsValid) isValid = false;
   }
   function validationCheckbox(checkboxsSelector) {
     function errorRemove(checkbox) {
